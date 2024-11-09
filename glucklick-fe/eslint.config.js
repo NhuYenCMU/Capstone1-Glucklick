@@ -41,5 +41,16 @@ export default tseslint.config(
       ]
 
     },
+    overrides: [
+      {
+        files: ['**/*.{jsx,tsx}'], // Target only React files
+        rules: {
+          // Disable or adjust specific rules for React files
+          'react/jsx-uses-react': 'off',
+          'react/jsx-uses-vars': 'off',
+          // Add any other specific rule configurations here
+        },
+      },
+    ],
   },
 )
