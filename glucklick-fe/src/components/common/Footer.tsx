@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
             <span className="logo-text">TOTC</span>
             <span className="logo-subtitle">Virtual Class for Zoom</span>
           </div>
-      <div className='nav-links'/>
+      <div className=' nav-links'/>
           <a href="#home">Home</a>
           <a href="#my-results">My Results</a>
           <a href="#chatbox">ChatBox</a>
