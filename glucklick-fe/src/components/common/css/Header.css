@@ -17,7 +17,9 @@
     margin-top: 8px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 50px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .logo-header {
@@ -33,7 +35,7 @@
 
 .nav a {
     text-decoration: none;
-    color: #353b3b;
+    color: #6b6f6f;
     cursor: pointer;
     position: relative;
 }
@@ -53,8 +55,9 @@
 
 .username {
     font-size: 15px;
-    font-weight: bold;
-    color: #323538;
+    font-weight:bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #39393a;
 }
 
 .username:hover {
