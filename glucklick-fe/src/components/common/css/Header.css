@@ -1,0 +1,63 @@
+@import url(./root.css);
+.header {
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 2vh 5vw;
+    background-color: #f8f8f8;
+  }
+  .nav{
+    padding-right: 5vw;
+  }
+  .logo {
+    height: 100%;
+    padding: 0 0 0 5vw;
+    font-weight: bold;
+    font-size: 24px;
+    color: #00a8e8;
+    cursor: pointer;
+  }
+  .nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .nav a:hover{
+    color: var(--primary-color);
+    transition: width 0.2s ease-in-out;
+  }
+
+  .nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    /* width: 100%; */
+    height: 2px; /* Chiều cao của đường gạch chân */
+    background-color: var(--primary-color); /* Màu đường gạch chân */
+    transition: width 0.2s ease-in-out; /* Hiệu ứng chuyển động */
+  }
+  
+  .nav a:hover::after {
+    animation: expand 0.25s forwards;
+  }
+  
+  /* Định nghĩa hiệu ứng keyframes */
+  @keyframes expand {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  .user {
+    margin-left: 20px;
+    color: #333;
+  } 
+
