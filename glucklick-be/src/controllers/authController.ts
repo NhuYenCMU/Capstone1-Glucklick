@@ -8,9 +8,14 @@ export const register = async (req: Request, res: Response, next: NextFunction):
         const { username, email, password } = req.body;
 
         // Kiểm tra người dùng đã tồn tại
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({
+          $or: [{ email }, { username }]
+        });
         if (existingUser) {
-            res.status(400).json({ message: 'User already exists' });
+            const message = existingUser.email === email
+                ? 'Email already in use'
+                : 'Username already in use';
+            res.status(400).json({ message });
             return;
         }
 
@@ -35,4 +40,33 @@ export const register = async (req: Request, res: Response, next: NextFunction):
     } catch (error) {
         next(error);
     }
+
 };
+
+export const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+      const { username, password } = req.body;
+
+      // Kiểm tra người dùng có tồn tại hay không
+      const user = await User.findOne({ username });
+      if (!user) {
+          res.status(400).json({ message: 'Invalid username or password' });
+          return;
+      }
+
+      // Kiểm tra mật khẩu
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+          res.status(400).json({ message: 'Invalid username or password' });
+          return;
+      }
+
+      // Tạo token JWT
+      const token = generateToken(user._id.toString());
+
+      res.status(200).json({ message: 'Login successful', token });
+  } catch (error) {
+      next(error);
+  }
+};
+  
