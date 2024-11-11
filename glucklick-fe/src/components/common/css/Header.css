@@ -43,6 +43,7 @@
 .user {
     display: flex;
     align-items: center;
+    cursor: 'pointer';
     gap: 5px;
 }
 
@@ -51,6 +52,7 @@
     height: 40px;
     border-radius: 50%;
     border: 2px solid #f0f0f0;
+    
 }
 
 .username {
@@ -63,6 +65,19 @@
 .username:hover {
     color: #118eb0;
 }
+
+/* CSS cho các liên kết trong phần header */
+.header .nav .item {
+  color: rgb(76, 77, 77); /* Màu mặc định cho các liên kết */
+  text-decoration: none; /* Loại bỏ gạch chân mặc định */
+  transition: color 0.3s ease, text-decoration 0.3s ease; /* Thêm hiệu ứng chuyển mượt */
+}
+
+.header .nav .item:hover {
+  color: #4298b4; /* Thay đổi màu khi di chuột qua, ví dụ: xanh lam */
+  text-decoration: underline; /* Thêm gạch chân dưới khi di chuột qua */
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {

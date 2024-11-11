@@ -13,13 +13,13 @@ export const Header: React.FC = () => {
         <div className='logo-header'>GLUCKLICK</div>
         <nav className="nav">
           <a className='item' href="#home">Home</a>
-          <a href="#my-results">My Results</a>
-          <a href="#dashboard">Dashboard</a>
-          <a href="#chatbox">ChatBox</a>
-          <a href="#blog">Blog</a>
+          <a className='item' href="#my-results">My Results</a>
+          <a className='item' href="#dashboard">Dashboard</a>
+          <a className='item' href="#chatbox">ChatBox</a>
+          <a className='item' href="#blog">Blog</a>
         </nav>
-        <div className="user">
-          <img src="logo-user.jpg" onClick={handleUserClick} alt="User avatar" />
+        <div className="user" onClick={handleUserClick} style={{ cursor: 'pointer' }}>
+          <img src="logo-user.jpg" alt="User avatar" />
           <a href="#name" className="username">Himass</a>
         </div>
       </header>
