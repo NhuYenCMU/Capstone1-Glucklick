@@ -46,6 +46,8 @@ body, html {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  max-width: 250px; /* Giới hạn chiều rộng của nút */
+  margin: 0 auto;
 }
 
 .illustration {
