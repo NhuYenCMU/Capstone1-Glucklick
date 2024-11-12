@@ -44,15 +44,37 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    position: relative; /* Make the parent element relative */
+    cursor: pointer;
 }
-
 .user img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border: 2px solid #f0f0f0;
 }
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px); /* Positions the dropdown below the user avatar with a small gap */
+    right: 0; /* Aligns the dropdown to the right edge of the parent element */
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    min-width: 150px;
+    z-index: 1000;
+}
 
+.dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f2f2f2;
+}
 .username {
     font-size: 15px;
     font-weight:bold;

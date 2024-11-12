@@ -1,21 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import './css/Header.css';
 
-export const Header: React.FC = () => {
-  return (
-      <header className="header">
-        <div className='logo-header'>GLUCKLICK</div>
-        <nav className="nav">
-          <a className='item' href="#home">Home</a>
-          <a href="#my-results">My Results</a>
-          <a href="#dashboard">Dashboard</a>
-          <a href="#chatbox">ChatBox</a>
-          <a href="#blog">Blog</a>
-        </nav>
-        <div className="user">
-          <img src="logo-user.jpg" alt="User avatar" />
-          <a href="#name" className="username">Himass</a>
-        </div>
-      </header>
-  );
+interface HeaderProps {
+    isAuthenticated: boolean;
+    onLogout: () => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    return (
+        <header className="header">
+            <div className="logo-header">GLUCKLICH</div>
+            <nav className="nav">
+                <Link className="item" to="/">Home</Link>
+                <Link to="/my-results">My Results</Link>
+                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/chatbox">ChatBox</Link>
+                <Link to="/blog">Blog</Link>
+            </nav>
+            <div className="user" onClick={toggleDropdown} ref={dropdownRef}>
+                <img src="logo-user.jpg" alt="User avatar" />
+                <span className="username">Himass</span>
+
+                {isDropdownOpen && (
+                    <div className="dropdown-menu">
+                        {isAuthenticated ? (
+                            <>
+                                <Link to="/edit-profile" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Edit Profile</Link>
+                                <Link to="/change-password" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Change Password</Link>
+                                <button className="dropdown-item" onClick={onLogout}>Logout</button>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Login</Link>
+                                <Link to="/register" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Register</Link>
+                            </>
+                        )}
+                    </div>
+                )}
+            </div>
+        </header>
+    );
 };
+
+export default Header;

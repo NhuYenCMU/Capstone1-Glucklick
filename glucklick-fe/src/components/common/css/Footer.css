@@ -4,12 +4,10 @@
 .footer {
   background-color: #1F2031;
   color: #FFFFFF;
-  padding: 40px 0;
   text-align: center;
   font-family: Arial, sans-serif;
   width: 100%;
   box-sizing: border-box;
-  margin-top: auto;
 }
 
 .logo {
@@ -50,6 +48,15 @@
   gap: 20px;
   margin-bottom: 20px;
   font-size: 24px;
+  color: #ffffff; /* Set icon color to white */
+}
+.social-links a {
+  color: #ffffff; /* Ensures icons remain white even if links are used */
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: #ddd; /* Optional: lighter color on hover */
 }
 
 .footer-links {

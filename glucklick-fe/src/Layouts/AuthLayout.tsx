@@ -1,3 +1,4 @@
+// src/components/AuthLayout.tsx
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import LoginImage from '../Login/Image/login.jpg';
@@ -9,7 +10,7 @@ interface AuthLayoutProps {
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
     const location = useLocation();
-    const isAuthRoute = ["/login", "/register", "/forgot-password"].includes(location.pathname);
+    const isAuthRoute = ["/login", "/register", "/forgot-password", "/change-password"].includes(location.pathname);
 
     return (
         <div className="app-container">
