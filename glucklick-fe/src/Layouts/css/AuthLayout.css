@@ -16,7 +16,7 @@ body, html {
     max-width: 1400px; /* Increased maximum width */
     background-color: #ffffff;
     border-radius: 12px; /* Slightly more rounded corners */
-    box-shadow: 0px 0px 30px rgba(168, 192, 224, 0.15); /* Larger shadow for more depth */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15); /* Larger shadow for more depth */
     overflow: hidden;
     margin-left: 150px;
   }
@@ -112,7 +112,7 @@ body, html {
   
 .auth-form input {
     width: 100%;
-    border: 1px solid #33b5e5;
+    border: 1spx solid #33b5e5;
     border-radius: 8px;
     padding: 0.9rem;
     font-size: 1.1rem;
