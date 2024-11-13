@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs'
 import User, { IUser } from '../models/user'
 import { generateToken } from '../utils/jwt'
 import { models } from 'mongoose'
+import * as crypto from 'crypto'
+import nodemailer from 'nodemailer'
 
 export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -95,35 +97,48 @@ export const editUser = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ message: 'Lỗi khi cập nhật người dùng', error: (error as Error).message })
   }
 }
-// Hàm hiển thị trang "forgot-password" để người dùng có thể nhập email
-// export const showforgotPassword = (req: Request, res: Response): void => {
-//   res.render('forgot-password') // Render trang "forgot-password"
-// }
+// Chức năng quên mật khẩu
+export const forgotPassword = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const { email } = req.body
 
-// // Hàm xử lý yêu cầu quên mật khẩu
-// export const forgotPassword = async (req: Request, res: Response): Promise<void> => {
-//   try {
-//     // Lấy email từ yêu cầu của người dùng
-//     const email = req.body.email
+    // Kiểm tra xem người dùng có tồn tại hay không
+    const user = await User.findOne({ email })
+    if (!user) {
+      res.status(404).json({ message: 'Không tìm thấy người dùng' })
+      return
+    }
 
-//     // Kiểm tra xem email có tồn tại trong hệ thống không
-//     const user = await models.User.findOne({ where: { email } })
+    // Tạo mã reset token
+    const resetToken = crypto.randomBytes(32).toString('hex')
+    const hashedToken = crypto.createHash('sha256').update(resetToken).digest('hex')
+    const resetTokenExpiry = new Date(Date.now() + 3600000) // Token có hiệu lực trong 1 giờ
 
-//     if (user) {
-//       //Tao link
-//       const{sign} = require('./jwt');
-//       const{host} = req.header('host');
-//       const resetLink =
-//       // Nếu tìm thấy email, tạo link hoặc hiển thị trạng thái "done"
-//       res.render('forgot-password', { done: true })
-//     } else {
-//       // Nếu không tìm thấy email, hiển thị thông báo lỗi trên trang "forgot-password"
-//       res.render('forgot-password', { message: 'Email does not exist!' })
-//     }
-//   } catch (error) {
-//     // Xử lý lỗi nếu có sự cố trong quá trình kiểm tra email
-//     console.error('Error in forgotPassword function:', error)
-//     // Trả về mã lỗi 500 và thông báo lỗi cho người dùng
-//     res.status(500).json({ message: 'Internal Server Error' })
-//   }
-// }
+    // Lưu mã token đã mã hóa và thời hạn vào tài liệu người dùng
+    user.resetPasswordToken = hashedToken
+    user.resetPasswordExpires = resetTokenExpiry
+    await user.save()
+
+    // Gửi token qua email (sử dụng nodemailer làm ví dụ)
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    })
+
+    const resetUrl = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`
+    const message = `Vui lòng sử dụng liên kết sau để đặt lại mật khẩu của bạn: \n\n ${resetUrl}`
+
+    await transporter.sendMail({
+      to: user.email,
+      subject: 'Yêu cầu đặt lại mật khẩu',
+      text: message
+    })
+
+    res.status(200).json({ message: 'Email đặt lại mật khẩu đã được gửi' })
+  } catch (error) {
+    next(error)
+  }
+}
