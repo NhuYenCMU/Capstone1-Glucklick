@@ -37,24 +37,23 @@ export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => 
                 <Link to="/chatbox">ChatBox</Link>
                 <Link to="/blog">Blog</Link>
             </nav>
-            <div className="user" onClick={toggleDropdown} ref={dropdownRef}>
-                <img src="logo-user.jpg" alt="User avatar" />
-                <span className="username">Himass</span>
-
-                {isDropdownOpen && (
-                    <div className="dropdown-menu">
-                        {isAuthenticated ? (
-                            <>
+            <div className="user-section" ref={dropdownRef}>
+                {isAuthenticated ? (
+                    <div className="user" onClick={toggleDropdown}>
+                        <img src="logo-user.jpg" alt="User avatar" />
+                        <span className="username">Himass</span>
+                        {isDropdownOpen && (
+                            <div className="dropdown-menu">
                                 <Link to="/edit-profile" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Edit Profile</Link>
                                 <Link to="/change-password" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Change Password</Link>
                                 <button className="dropdown-item" onClick={onLogout}>Logout</button>
-                            </>
-                        ) : (
-                            <>
-                                <Link to="/login" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Login</Link>
-                                <Link to="/register" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Register</Link>
-                            </>
+                            </div>
                         )}
+                    </div>
+                ) : (
+                    <div className="auth-buttons">
+                        <Link to="/login" className="auth-button">Login</Link>
+                        <Link to="/register" className="auth-button">Register</Link>
                     </div>
                 )}
             </div>

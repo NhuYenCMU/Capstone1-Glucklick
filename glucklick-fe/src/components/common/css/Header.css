@@ -55,19 +55,20 @@
 }
 .dropdown-menu {
     position: absolute;
-    top: calc(100% + 10px); /* Positions the dropdown below the user avatar with a small gap */
-    right: 0; /* Aligns the dropdown to the right edge of the parent element */
+    top: calc(100% + 5px); /* Smaller gap between avatar and dropdown */
+    left: 5px; /* Move closer to the right edge */
     background-color: white;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Slightly larger shadow for depth */
+    border-radius: 10px;
     overflow: hidden;
-    min-width: 150px;
+    min-width: 180px; /* Increase width for a more prominent look */
     z-index: 1000;
 }
 
 .dropdown-item {
     display: block;
-    padding: 10px 20px;
+    padding: 8px 18px; /* Slightly smaller padding */
+    font-size: 0.95rem; /* Slightly smaller font */
     color: #333;
     text-decoration: none;
 }
@@ -75,6 +76,7 @@
 .dropdown-item:hover {
     background-color: #f2f2f2;
 }
+
 .username {
     font-size: 15px;
     font-weight:bold;
@@ -85,6 +87,36 @@
 .username:hover {
     color: #118eb0;
 }
+.auth-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+.auth-button {
+    padding: 8px 15px;
+    text-decoration: none; /* Remove underline for links */
+    color: white; /* Text color */
+    background-color: #33b5e5; /* Background color */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+    font-weight: bold; /* Bold font */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
+    display: inline-block; /* Make it behave like a button */
+    text-align: center;
+}
+
+.auth-button:hover {
+    background-color: #28a0d4; /* Slightly darker shade on hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Add hover shadow */
+    transform: translateY(-2px); /* Slight "pop-up" effect */
+}
+
+.auth-button:active {
+    transform: translateY(0); /* Return to normal when clicked */
+    background-color: #1e8bb8; /* Even darker shade */
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
@@ -113,3 +145,4 @@
       font-size: 13px; /* Smaller font size for username */
   }
 }
+
