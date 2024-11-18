@@ -185,6 +185,7 @@ body, html {
   transition: background-color 0.3s ease, transform 0.2s ease;
   width: 250px; /* Chiều rộng cố định */
   height: 40px; /* Chiều cao cố định */
+  margin: 30px auto;
 }
 
 .start-testing-button:hover {
@@ -196,8 +197,6 @@ body, html {
   background-color: #008d5a;
   transform: translateY(0);
 }
-
-
 
 /* Responsive Styles */
 @media (max-width: 768px) {
