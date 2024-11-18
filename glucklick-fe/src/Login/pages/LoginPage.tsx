@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, FormGroup, Input, Container } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 interface LoginPageProps {
     onLogin: () => void;
@@ -10,22 +11,43 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        if (username && password) {
-            console.log('Login:', { username, password, rememberMe });
+    const handleLogin = async () => {
+      if (!username || !password) {
+        setErrorMessage('Please enter both username and password');
+        return;
+    }
+
+    try {
+        const response = await axios.post('http://localhost:5003/api/auth/login', {
+            username,
+            password
+        });
+
+        if (response.data.token) {
+            // Lưu token vào localStorage hoặc sessionStorage
+            if (rememberMe) {
+                localStorage.setItem('token', response.data.token);
+            } else {
+                sessionStorage.setItem('token', response.data.token);
+            }
+
+            // Đặt callback khi đăng nhập thành công
             onLogin();
             navigate('/');
-        } else {
-            console.log('Please enter both username and password');
         }
+    } catch (error: any) {
+        setErrorMessage(error.response?.data?.message || 'Login failed');
+    }
     };
 
     return (
         <Container className="auth-form p-4">
             <h2>Welcome to Glücklich..!</h2>
             <p>To ensure the security of your account, please login.</p>
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <FormGroup>
                 <label>User name</label>
                 <Input

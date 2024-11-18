@@ -32,10 +32,10 @@ export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => 
             <div className="logo-header">GLUCKLICH</div>
             <nav className="nav">
                 <Link className="item" to="/">Home</Link>
-                <Link to="/my-results">My Results</Link>
-                <Link to="/dashboard">Dashboard</Link>
-                <Link to="/chatbox">ChatBox</Link>
-                <Link to="/blog">Blog</Link>
+                <Link className="item" to="/my-results">My Results</Link>
+                <Link className="item" to="/dashboard">Dashboard</Link>
+                <Link className="item" to="/chatbox">ChatBox</Link>
+                <Link className="item" to="/blog">Blog</Link>
             </nav>
             <div className="user" onClick={toggleDropdown} ref={dropdownRef}>
                 <img src="logo-user.jpg" alt="User avatar" />
