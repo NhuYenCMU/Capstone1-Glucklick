@@ -14,7 +14,7 @@ import HomepageLayout from './Layouts/HomepageLayout';
 import AuthLayout from './Layouts/AuthLayout';
 
 const App: React.FC = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
 
     const handleLogin = () => {
         setIsAuthenticated(true); // Set authentication to true after login
@@ -45,7 +45,7 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
 
     return (
         <>
-            {showHeader && <Header isAuthenticated={isAuthenticated} onLogout={onLogout} />}
+            {showHeader && <Header isAuthenticated={true} onLogout={onLogout} />}
             <Routes>
                 <Route
                     path="/"
