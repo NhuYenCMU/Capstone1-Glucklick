@@ -21,7 +21,18 @@
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
 }
+.nav .item {
+  text-decoration: none; /* Loại bỏ gạch chân mặc định */
+  color: #000; /* Màu chữ */
+  padding: 5px 5px; /* Khoảng cách giữa các mục */
+  transition: all 0.3s ease; /* Hiệu ứng chuyển đổi mượt */
+  cursor: pointer; /* Con trỏ hình bàn tay */
+}
 
+.nav .item:hover {
+  text-decoration: underline; /* Thêm gạch chân khi hover */
+  color: #007BFF; /* Thay đổi màu khi hover (tuỳ chỉnh theo thiết kế) */
+}
 .logo-header {
     color: #118eb0;
     font-weight: bold;
@@ -35,7 +46,7 @@
 
 .nav a {
     text-decoration: none;
-    color: #6b6f6f;
+    color: #131010;
     cursor: pointer;
     position: relative;
 }
@@ -44,15 +55,15 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    position: relative; /* Make the parent element relative */
-    cursor: pointer;
 }
+
 .user img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border: 2px solid #f0f0f0;
 }
+/* <<<<<<< HEAD */
 .dropdown-menu {
     position: absolute;
     top: calc(100% + 10px); /* Positions the dropdown below the user avatar with a small gap */
@@ -75,6 +86,9 @@
 .dropdown-item:hover {
     background-color: #f2f2f2;
 }
+/* ======= */
+
+/* >>>>>>> c7c203f (fix lan 1) */
 .username {
     font-size: 15px;
     font-weight:bold;

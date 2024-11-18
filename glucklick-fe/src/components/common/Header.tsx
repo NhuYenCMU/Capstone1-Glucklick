@@ -31,11 +31,11 @@ export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => 
         <header className="header">
             <div className="logo-header">GLUCKLICH</div>
             <nav className="nav">
-                <Link className="item" to="/">Home</Link>
-                <Link to="/my-results">My Results</Link>
-                <Link to="/dashboard">Dashboard</Link>
-                <Link to="/chatbox">ChatBox</Link>
-                <Link to="/blog">Blog</Link>
+              <a className='item' href="#home">Home</a>
+              <a className='item' href="#my-results">My Results</a>
+              <a className='item' href="#dashboard">Dashboard</a>
+              <a className='item' href="#chatbox">ChatBox</a>
+              <a className='item' href="#blog">Blog</a>
             </nav>
             <div className="user" onClick={toggleDropdown} ref={dropdownRef}>
                 <img src="logo-user.jpg" alt="User avatar" />
