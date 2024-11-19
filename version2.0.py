@@ -107,7 +107,7 @@ train_data = dataset["train"]
 test_data = dataset["validation"]
 
 # Khởi tạo tokenizer và mô hình T5
-tokenizer = T5Tokenizer.from_pretrained("t5-small")
+tokenizer = T5Tokenizer.from_pretrained("t5-small", legacy=False)
 model = TFT5ForConditionalGeneration.from_pretrained("t5-small")
 
 
@@ -200,5 +200,5 @@ for epoch in range(epochs):
         print(f"Loss: {loss.numpy()}")
 
 # Lưu mô hình sau khi huấn luyện
-model.save_pretrained("saved_model_t5_qa_generator")
-tokenizer.save_pretrained("saved_model_t5_qa_generator")
+model.save_pretrained("saved_model_t5_qa_generator.keras")
+tokenizer.save_pretrained("saved_model_t5_qa_generator.keras")
