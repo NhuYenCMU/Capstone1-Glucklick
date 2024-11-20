@@ -8,6 +8,8 @@
   font-family: Arial, sans-serif;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+  z-index: 4; 
 }
 
 .logo {

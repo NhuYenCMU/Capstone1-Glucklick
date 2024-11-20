@@ -72,7 +72,7 @@ const CanvasBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      style={{ position: 'fixed', top: 0, left: 0,  zIndex: 4, } }
+      style={{ position: 'fixed', top: 0, left: 0,  zIndex: 3, } }
     />
   );
 };

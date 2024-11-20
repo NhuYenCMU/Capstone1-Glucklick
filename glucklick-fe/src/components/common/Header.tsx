@@ -31,30 +31,52 @@ export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => 
         <header className="header">
             <div className="logo-header">GLUCKLICH</div>
             <nav className="nav">
-              <a className='item' href="#home">Home</a>
-              <a className='item' href="#my-results">My Results</a>
-              <a className='item' href="#dashboard">Dashboard</a>
-              <a className='item' href="#chatbox">ChatBox</a>
-              <a className='item' href="#blog">Blog</a>
+                <a className="item" href="#home">Home</a>
+                <a className="item" href="#my-results">My Results</a>
+                <a className="item" href="#dashboard">Dashboard</a>
+                <a className="item" href="#chatbox">ChatBox</a>
+                <a className="item" href="#blog">Blog</a>
             </nav>
-            <div className="user" onClick={toggleDropdown} ref={dropdownRef}>
-                <img src="logo-user.jpg" alt="User avatar" />
-                <span className="username">Himass</span>
-
-                {isDropdownOpen && (
-                    <div className="dropdown-menu">
-                        {isAuthenticated ? (
-                            <>
-                                <Link to="/edit-profile" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Edit Profile</Link>
-                                <Link to="/change-password" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Change Password</Link>
-                                <button className="dropdown-item" onClick={onLogout}>Logout</button>
-                            </>
-                        ) : (
-                            <>
-                                <Link to="/login" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Login</Link>
-                                <Link to="/register" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>Register</Link>
-                            </>
+            <div className="user" ref={dropdownRef}>
+                {isAuthenticated ? (
+                    <>
+                        <img
+                            src="logo-user.jpg"
+                            alt="User avatar"
+                            onClick={toggleDropdown}
+                            className="user-avatar"
+                        />
+                        <span className="username" onClick={toggleDropdown}>Himass</span>
+                        {isDropdownOpen && (
+                            <div className="dropdown-menu">
+                                <Link
+                                    to="/edit-profile"
+                                    className="dropdown-item"
+                                    onClick={() => setIsDropdownOpen(false)}
+                                >
+                                    Edit Profile
+                                </Link>
+                                <Link
+                                    to="/change-password"
+                                    className="dropdown-item"
+                                    onClick={() => setIsDropdownOpen(false)}
+                                >
+                                    Change Password
+                                </Link>
+                                <button className="auth-button" onClick={onLogout}>
+                                    Logout
+                                </button>
+                            </div>
                         )}
+                    </>
+                ) : (
+                    <div className="auth-buttons">
+                        <Link to="/login" className="auth-button">
+                            Login
+                        </Link>
+                        <Link to="/register" className="auth-button">
+                            Register
+                        </Link>
                     </div>
                 )}
             </div>
