@@ -5,6 +5,8 @@ import { generateToken } from '../utils/jwt'
 import { models } from 'mongoose'
 import * as crypto from 'crypto'
 import nodemailer from 'nodemailer'
+import jwt from 'jsonwebtoken'
+import { verifyToken } from '../utils/jwt' // Hàm xác thực token
 
 export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -138,6 +140,53 @@ export const forgotPassword = async (req: Request, res: Response, next: NextFunc
     })
 
     res.status(200).json({ message: 'Email đặt lại mật khẩu đã được gửi' })
+  } catch (error) {
+    next(error)
+  }
+}
+// chức năng thay đổi mật khẩu
+export const changePassword = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const { oldPassword, newPassword } = req.body
+
+    // Lấy token từ header Authorization
+    const token = req.headers.authorization?.split(' ')[1]
+    if (!token) {
+      res.status(401).json({ message: 'Authentication token is missing' })
+      return
+    }
+
+    // Xác thực token và lấy userId từ token
+    const decoded = verifyToken(token) // verifyToken là hàm giải mã token, bạn cần đảm bảo đã viết hàm này
+    const userId = decoded.userId
+    if (!decoded || !userId) {
+      res.status(401).json({ message: 'Invalid token' })
+      return
+    }
+    // const userId = decoded.id
+
+    // Tìm người dùng theo userId
+    const user = await User.findById(userId)
+    if (!user) {
+      res.status(404).json({ message: 'User not found' })
+      return
+    }
+
+    // Kiểm tra mật khẩu cũ
+    const isMatch = await bcrypt.compare(oldPassword, user.password)
+    if (!isMatch) {
+      res.status(400).json({ message: 'Old password is incorrect' })
+      return
+    }
+
+    // Mã hóa mật khẩu mới
+    const hashedPassword = await bcrypt.hash(newPassword, 10)
+
+    // Cập nhật mật khẩu trong cơ sở dữ liệu
+    user.password = hashedPassword
+    await user.save()
+
+    res.status(200).json({ message: 'Password changed successfully' })
   } catch (error) {
     next(error)
   }
