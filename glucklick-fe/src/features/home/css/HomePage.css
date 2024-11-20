@@ -64,25 +64,11 @@ body, html {
  
 }
 
-.text:nth-child(odd) {
-  font-family: "Verdana", sans-serif;
-  background: linear-gradient(180deg, #da0b04, #276e84, #f2d623);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
-.text:nth-child(even) {
-  font-family: "Georgia", serif;
-  background: linear-gradient(90deg, #4fb6ee, #246072, #13b7bd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-}
 .bg-image {
   width: 50px; /* Chiều rộng ảnh */
   height: auto; /* Tự động giữ tỉ lệ ảnh */
 }
-
 
 /* Animation */
 @keyframes float {

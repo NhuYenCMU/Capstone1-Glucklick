@@ -4,17 +4,15 @@ import { Footer } from './../../components/common/Footer';
 import CanvasBackground from './../../components/Backgrough';
 import imageBG from './../../features/image/background.png';
 
-
 const Homepage: React.FC = () => {
   useEffect(() => {
-    // Thêm Font Awesome CDN
+    // Add Font Awesome CDN dynamically
     const link = document.createElement('link');
     link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css';
     link.rel = 'stylesheet';
     link.type = 'text/css';
     document.head.appendChild(link);
 
-    // Dọn dẹp khi component unmount
     return () => {
       document.head.removeChild(link);
     };
@@ -30,21 +28,20 @@ const Homepage: React.FC = () => {
           <button className="start-testing-button">Start Testing Now →</button>
         </div>
         <div className="image-container">
-          <img src={imageBG}alt="Coding illustration" className="homepage-image" />
+          <img src={imageBG} alt="Coding illustration" className="homepage-image" />
         </div>
         <div className="text-background">
-          <div className="text"><img src='./public/python.png'alt="Coding illustration" className="bg-image"/></div>
-          <div className="text"><img src='./public/java.png'alt="Coding illustration" className="bg-image"/></div>
-          <div className="text"><img src='./public/dart.png'alt="Coding illustration" className="bg-image"/></div>
-          <div className="text"><img src='./public/angular.png'alt="Coding illustration" className="bg-image"/></div>
-          <div className="text"><img src='./public/javascript.png'alt="Coding illustration" className="bg-image"/></div>
-          <div className="text"><img src='./public/php.png'alt="Coding illustration" className="bg-image"/></div>
-          <div className="text"><img src='./public/sql.png'alt="Coding illustration" className="bg-image"/></div>
-          <div className="text"><img src='./public/kotlin.png'alt="Coding illustration" className="bg-image"/></div>
-  
-        </div> 
+          <div className="text"><img src="/python.png" alt="Python" className="bg-image" /></div>
+          <div className="text"><img src="/java.png" alt="Java" className="bg-image" /></div>
+          <div className="text"><img src="/dart.png" alt="Dart" className="bg-image" /></div>
+          <div className="text"><img src="/angular.png" alt="Angular" className="bg-image" /></div>
+          <div className="text"><img src="/javascript.png" alt="JavaScript" className="bg-image" /></div>
+          <div className="text"><img src="/php.png" alt="PHP" className="bg-image" /></div>
+          <div className="text"><img src="/sql.png" alt="SQL" className="bg-image" /></div>
+          <div className="text"><img src="/kotlin.png" alt="Kotlin" className="bg-image" /></div>
+        </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

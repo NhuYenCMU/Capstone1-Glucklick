@@ -14,7 +14,7 @@ import HomepageLayout from './Layouts/HomepageLayout';
 import AuthLayout from './Layouts/AuthLayout';
 
 const App: React.FC = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const handleLogin = () => {
         setIsAuthenticated(true); // Set authentication to true after login
@@ -38,15 +38,16 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
     onLogout,
 }) => {
     const location = useLocation();
-    
+
     // Array of paths where the Header should be hidden
-    const authRoutes = ["/login", "/register", "/forgot-password", "/change-password"];
+    const authRoutes = ['/login', '/register', '/forgot-password', '/change-password'];
     const showHeader = !authRoutes.includes(location.pathname);
 
     return (
         <>
-            {showHeader && <Header isAuthenticated={true} onLogout={onLogout} />}
+            {showHeader && <Header isAuthenticated={isAuthenticated} onLogout={onLogout} />}
             <Routes>
+                {/* Public homepage */}
                 <Route
                     path="/"
                     element={
@@ -55,10 +56,23 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
                         </HomepageLayout>
                     }
                 />
+                {/* Public routes */}
                 <Route path="/register" element={<AuthLayout><RegisterPage /></AuthLayout>} />
                 <Route path="/login" element={<AuthLayout><LoginPage onLogin={onLogin} /></AuthLayout>} />
                 <Route path="/forgot-password" element={<AuthLayout><ForgotPasswordPage /></AuthLayout>} />
                 <Route path="/change-password" element={<AuthLayout><ChangePasswordPage /></AuthLayout>} />
+                {/* Protected route example */}
+                <Route
+                    path="/protected"
+                    element={
+                        isAuthenticated ? (
+                            <div>Protected Content</div>
+                        ) : (
+                            <Navigate to="/login" />
+                        )
+                    }
+                />
+                {/* Catch-all route */}
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </>
