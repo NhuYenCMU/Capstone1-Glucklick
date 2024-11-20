@@ -196,9 +196,15 @@ body, html {
   border-radius: 5px;
   font-size: 18px;
   cursor: pointer;
+<<<<<<< HEAD
+  width: 20%;
+  max-width: 250px; /* Giới hạn chiều rộng của nút */
+  margin: 30px auto;
+=======
   transition: background-color 0.3s ease, transform 0.2s ease;
   width: 250px; /* Chiều rộng cố định */
   height: 40px; /* Chiều cao cố định */
+>>>>>>> 0717c44814667804cc670dee6c6ec97fe60cfc6a
 }
 
 .start-testing-button:hover {
@@ -211,7 +217,20 @@ body, html {
   transform: translateY(0);
 }
 
+<<<<<<< HEAD
+.header .nav .item {
+  color: rgb(76, 77, 77); /* Màu mặc định cho các liên kết */
+  text-decoration: none; /* Loại bỏ gạch chân mặc định */
+  transition: color 0.3s ease, text-decoration 0.3s ease; /* Thêm hiệu ứng chuyển mượt */
+}
 
+.header .nav .item:hover {
+  color: #4298b4; /* Thay đổi màu khi di chuột qua, ví dụ: xanh lam */
+  text-decoration: underline; /* Thêm gạch chân dưới khi di chuột qua */
+}
+=======
+
+>>>>>>> 0717c44814667804cc670dee6c6ec97fe60cfc6a
 
 /* Responsive Styles */
 @media (max-width: 768px) {

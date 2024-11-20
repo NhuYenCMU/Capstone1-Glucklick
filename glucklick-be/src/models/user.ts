@@ -21,4 +21,4 @@ const UserSchema: Schema = new Schema({
   resetPasswordExpires: { type: Date }
 })
 
-export default mongoose.model<IUser>('User', UserSchema)
+export default mongoose.model<IUser>('users', UserSchema)
