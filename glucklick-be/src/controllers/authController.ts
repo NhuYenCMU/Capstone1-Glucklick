@@ -7,6 +7,7 @@ import * as crypto from 'crypto'
 import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken'
 import { verifyToken } from '../utils/jwt' // Hàm xác thực token
+import { sendEmail } from '../services/emailService'
 
 export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -121,23 +122,12 @@ export const forgotPassword = async (req: Request, res: Response, next: NextFunc
     user.resetPasswordExpires = resetTokenExpiry
     await user.save()
 
-    // Gửi token qua email (sử dụng nodemailer làm ví dụ)
-    const transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    })
-
+    // Tạo URL và nội dung email
     const resetUrl = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`
     const message = `Vui lòng sử dụng liên kết sau để đặt lại mật khẩu của bạn: \n\n ${resetUrl}`
 
-    await transporter.sendMail({
-      to: user.email,
-      subject: 'Yêu cầu đặt lại mật khẩu',
-      text: message
-    })
+    // Gửi email
+    await sendEmail(user.email, 'Yêu cầu đặt lại mật khẩu', message)
 
     res.status(200).json({ message: 'Email đặt lại mật khẩu đã được gửi' })
   } catch (error) {
