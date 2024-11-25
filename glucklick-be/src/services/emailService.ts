@@ -1,5 +1,5 @@
 import transporter from '../utils/email'
-
+import { Router, Request, Response } from 'express'
 /**
  * Hàm gửi email
  * @param to Địa chỉ email người nhận
@@ -21,3 +21,4 @@ export const sendEmail = async (to: string, subject: string, text: string, html?
     throw new Error('Không thể gửi email')
   }
 }
+
