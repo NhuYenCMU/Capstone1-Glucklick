@@ -8,12 +8,20 @@ import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken'
 import { verifyToken } from '../utils/jwt' // Hàm xác thực token
 import { sendEmail } from '../services/emailService'
+import { validatePassword } from '../utils/validatePassword'
 
 export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { username, email, password } = req.body
 
-    // Kiểm tra người dùng đã tồn tại
+    // Validate password strength
+    const passwordError = validatePassword(password)
+    if (passwordError) {
+      res.status(400).json({ message: passwordError })
+      return
+    }
+
+    // Check if user already exists
     const existingUser = await User.findOne({
       $or: [{ email }, { username }]
     })
@@ -23,26 +31,37 @@ export const register = async (req: Request, res: Response, next: NextFunction):
       return
     }
 
-    // Mã hóa mật khẩu
+    // Hash password
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
 
-    // Tạo người dùng mới
+    // Create a new user
     const newUser: IUser = new User({
       username,
       email,
       password: hashedPassword,
-      role: 'user' // hoặc 'admin' tùy vào logic của bạn
+      role: 'user' // Default role; modify as needed
     })
 
     await newUser.save()
 
-    // Tạo JWT token
-    const token = generateToken(newUser._id.toString())
+    // Generate JWT token
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET as string, {
+      expiresIn: '1d' // Token expiration (e.g., 1 day)
+    })
 
-    res.status(201).json({ message: 'User registered successfully', token })
+    res.status(201).json({
+      message: 'User registered successfully',
+      token,
+      user: {
+        id: newUser._id,
+        username: newUser.username,
+        email: newUser.email,
+        role: newUser.role
+      }
+    })
   } catch (error) {
-    next(error)
+    next(error) // Pass error to global error handler
   }
 }
 
