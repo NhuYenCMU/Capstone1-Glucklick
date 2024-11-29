@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Button, FormGroup, Input, Container } from 'reactstrap';
 import axios from 'axios';
+import CustomAlert_Error from '../../components/CustomAlert';
+import CustomAlert_Success from '../../components/CustomAlert';
+
 
 const RegisterPage: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -38,8 +41,20 @@ const RegisterPage: React.FC = () => {
     return (
         <Container className="auth-form p-4">
             <h2>Create Glücklich Account</h2>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-            {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+            {errorMessage && (
+                <CustomAlert_Error
+                    message={errorMessage}
+                    color="danger"
+                    onClose={() => setErrorMessage('')}
+                />
+            )}
+            {successMessage && (
+                <CustomAlert_Success
+                    message={successMessage}
+                    color="success"
+                    onClose={() => setSuccessMessage('')}
+                />
+            )}
             <FormGroup>
                 <label>Email Address</label>
                 <Input

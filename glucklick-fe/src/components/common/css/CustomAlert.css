@@ -1,0 +1,21 @@
+.alert-top-right {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1050; /* Đảm bảo trên các thành phần khác */
+  width: auto;
+  height: 70px;
+  max-width: 300px; /* Điều chỉnh kích thước */
+  padding: 15px; /* Giảm padding để alert nhỏ hơn */
+  font-size: 16px; /* Giảm kích thước chữ */
+  border-radius: 8px; /* Làm góc bo tròn nhẹ */
+}
+
+.alert .btn-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 10px; /* Giảm kích thước nút */
+  color: inherit; /* Dùng màu của alert */
+  opacity: 0.8;
+}

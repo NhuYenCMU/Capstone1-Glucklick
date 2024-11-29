@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Button, FormGroup, Input, Container } from 'reactstrap';
+import { Button, FormGroup, Input, Container, Alert } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import CustomAlert_Error from '../../components/CustomAlert';
 
 interface LoginPageProps {
     onLogin: () => void;
@@ -39,7 +40,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             navigate('/');
         }
     } catch (error: any) {
-        setErrorMessage(error.response?.data?.message || 'Login failed');
+        setErrorMessage(error.response?.data?.message || 'Incorrect username or password');
     }
     };
 
@@ -47,7 +48,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
         <Container className="auth-form p-4">
             <h2>Welcome to Glücklich..!</h2>
             <p>To ensure the security of your account, please login.</p>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            {errorMessage && (
+                <CustomAlert_Error
+                    message={errorMessage}
+                    color="danger"
+                    onClose={() => setErrorMessage('')}
+                />
+            )}
             <FormGroup>
                 <label>User name</label>
                 <Input
