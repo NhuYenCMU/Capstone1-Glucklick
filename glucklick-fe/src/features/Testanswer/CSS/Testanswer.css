@@ -1,0 +1,108 @@
+/* Container for the main content */
+.app-container2 {
+    display: flex;
+    flex-direction: column;  /* Stack content vertically */
+    justify-content: center;  /* Vertically center the content */
+    align-items: center;      /* Horizontally center the content */          /* Full viewport height */
+    background-color: #AFDEF8;
+    margin: 20px 20px;   /* Optional: set a background color */
+    max-width: max-content;
+    height: 100vh
+  }
+  
+  /* Center text container */
+  .center-text-container {
+    text-align: center;       /* Center the text horizontally */
+    margin-bottom: 50px;      /* Space below the text */
+  }
+  
+  /* Content container divided into left and right */
+  .content-container {
+    display: flex;
+    justify-content: space-between; /* Distribute left and right content */
+    width: 100%;                  /* Make the content container full width */
+    max-width: 1200px;            /* Optional: Set a max width for the container */
+  }
+  
+  /* Left container for buttons */
+  .left-container {
+    width: 45%;                   /* 45% width for the left section */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+  }
+  
+  /* Right container for image */
+  .right-container {
+    width: 45%;                   /* 45% width for the right section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Styling for the tab buttons */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;  /* Allow buttons to wrap into multiple rows */
+    gap: 10px;        /* Optional: add some space between buttons */
+  }
+  
+  .tab-button {
+    width: 30%;        /* Adjust width so that buttons take up 30% of the row */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    color: rgb(1, 0, 0); 
+    z-index: 10;
+  }
+  
+  .tab-button:hover {
+    background-color: #d1d1d1;
+    color: rgb(1, 0, 0); 
+  }
+  
+  .tab-button.active {
+    background-color: #007bff;
+    color: white;
+  }
+  .side-image1 {
+    width: 100%; /* Increased width for larger image */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px 0 0 12px;
+    margin-top: 30px;
+  }
+  /* Right section image */
+  .side-image1 img {
+    width: 100%;
+    max-width: 600px; /* Optional: Set max-width for the image */
+  }
+  
+  .side-image1 p {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+  }
+  .Skip{
+    color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      text-align: left;
+      margin-left: 55px;
+      z-index: 10;
+  }
+  .Skip:hover{
+    text-decoration: underline;
+  }

@@ -137,52 +137,49 @@
   }
 }
 .auth-buttons {
-    display: flex;
-    gap: 15px; /* Tăng khoảng cách giữa hai nút */
-    
+  display: flex;
+  gap: 10px; /* Giảm khoảng cách giữa các nút */
 }
 
-.auth-button {
-    overflow: hidden; /* Ẩn phần nền vượt ra khỏi nút */
-    position: relative;
-    color: #fff; /* Màu chữ */
-    background-color: #33b5e5; /* Màu nền */
-    border: none;
-    border-radius: 5px; /* Bo góc */
-    padding: 10px 20px; /* Tăng kích thước nút */
-    font-size: 14px; /* Kích thước chữ */
-    cursor: pointer;
-    text-decoration: none; /* Xóa gạch dưới */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Hiệu ứng mượt mà */
-    border-radius: 1rem;
+.btn {
+  outline: 0;
+  display: inline-flex;
+  align-items: center;            /* Canh giữa theo chiều dọc */
+  justify-content: center;        /* Canh giữa theo chiều ngang */
+  background: #40B3A2;
+  min-width: 120px;               /* Điều chỉnh chiều rộng tối thiểu */
+  height: 35px;                   /* Thêm chiều cao cho nút */
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+  padding: 0 20px;                /* Thêm padding cho nút, điều chỉnh khoảng cách trái và phải */
+  color: #fff;
+  font-size: 14px;                /* Điều chỉnh kích thước chữ */
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;             /* Canh giữa chữ trong nút */
 }
 
-.auth-button::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(51, 181, 229, 0.2); /* Màu nền nhạt hơn khi hover */
-    border-radius: 5px; /* Đảm bảo phù hợp với nút */
-    transition: opacity 0.3s ease;
-    opacity: 0;
-    z-index: 0; /* Đặt phía sau nội dung nút */
+.btn:hover {
+  opacity: .95;
+  color: #777171a2;
 }
 
-.auth-button:hover::after {
-    opacity: 1; /* Hiển thị màu nền nhạt khi hover */
+.btn .animation {
+  border-radius: 100%;
+  animation: ripple 0.6s linear infinite;
 }
 
-.auth-button:hover {
-    transform: translateY(-2px); /* Nút nâng lên một chút khi hover */
-    background-color: #1a9fd9; /* Màu sáng hơn khi hover */
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1);
+  }
+
+  100% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1), 0 0 0 80px rgba(255, 255, 255, 0);
+  }
 }
-
-.auth-button:focus {
-    outline: none; /* Xóa border mặc định khi focus */
-    box-shadow: 0 0 4px #33b5e5; /* Hiệu ứng focus */
-}
-
-

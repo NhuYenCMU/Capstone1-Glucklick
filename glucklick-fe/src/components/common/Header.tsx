@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './css/Header.css';
 
 interface HeaderProps {
@@ -26,16 +27,23 @@ export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => 
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+    const navigate = useNavigate();
+    const handleLogoClick = () => {
+        // Chuyển hướng về trang chủ ("/" là đường dẫn trang chính)
+        navigate('/');
+      };
 
     return (
         <header className="header">
-            <div className="logo-header">GLUCKLICH</div>
+            <div className="logo-header" onClick={handleLogoClick}>
+                GLUCKLICH
+            </div>
             <nav className="nav">
 {/* <<<<<<< HEAD */}
-                <a className="item" href="#home">Home</a>
+                <a className="item" href="/">Home</a>
                 <a className="item" href="#my-results">My Results</a>
                 <a className="item" href="#dashboard">Dashboard</a>
-                <a className="item" href="#chatbox">ChatBox</a>
+                <a className="item" href="/chatbot">ChatBot</a>
                 <a className="item" href="#blog">Blog</a>
 {/* =======
                 <Link className="item" to="/">Home</Link>
@@ -79,13 +87,15 @@ export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => 
                     </>
                 ) : (
                     <div className="auth-buttons">
-                        <Link to="/login" className="auth-button">
-                            Login
-                        </Link>
-                        <Link to="/register" className="auth-button">
-                            Register
-                        </Link>
+                    <Link to="/login" className="btn">
+                        <span className="animation">Login</span>
+                    </Link>
+                    <Link to="/register" className="btn">
+                        <span className="animation">Register</span>
+                    </Link>
                     </div>
+
+                  
                 )}
             </div>
         </header>
