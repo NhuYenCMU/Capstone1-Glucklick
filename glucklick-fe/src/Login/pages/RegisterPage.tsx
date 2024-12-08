@@ -67,7 +67,7 @@ const RegisterPage: React.FC = () => {
                     value={password}
                 />
             </FormGroup>
-            <Button color="primary" block onClick={handleRegister}>Register</Button>
+            <Button className="btn-auth" color="primary" block onClick={handleRegister}>Register</Button>
         </Container>
     );
 };

@@ -13,6 +13,9 @@ import ChangePasswordPage from './Login/pages/ChangePassword';
 import HomepageLayout from './Layouts/HomepageLayout';
 import AuthLayout from './Layouts/AuthLayout';
 import ChatBotPage from './Layouts/ChatbotLayout';
+import Testanswer1 from './features/Testanswer/Testanswer1';
+import Testanswer3 from './features/Testanswer/Testanswer3';
+import Testanswer2 from './features/Testanswer/Testanswer2';
 const App: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -62,6 +65,9 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
                 <Route path="/forgot-password" element={<AuthLayout><ForgotPasswordPage /></AuthLayout>} />
                 <Route path="/change-password" element={<AuthLayout><ChangePasswordPage /></AuthLayout>} />
                 <Route path="/chatbot" element={<ChatBotPage />} />
+                <Route path="/page1" element={<Testanswer1 />} />
+                <Route path="/page2" element={<Testanswer2 />} />
+                <Route path="/page3" element={<Testanswer3 />} />
                 {/* Protected route example */}
                 <Route
                     path="/protected"
