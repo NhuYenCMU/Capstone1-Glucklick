@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faCommentAlt, faTrashAlt, faStar, faMoon, faInfoCircle, faSignOutAlt, faLightbulb, faBolt, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import './css/Chatbot.css'; // Import file CSS của bạn
+import { faPlus, faCommentAlt, faTrashAlt, faStar, faMoon, faInfoCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import './css/Chatbot.css';
 
 const ChatbotLayout: React.FC = () => {
-    const [inputValue, setInputValue] = useState(""); // State để lưu giá trị của ô nhập liệu
+    const [inputValue, setInputValue] = useState(""); // State lưu trữ câu hỏi người dùng nhập
+    const [messages, setMessages] = useState<{ userMessage: string, botReply: string }[]>([]); // State lưu trữ các cuộc trò chuyện
+    const [navItems, setNavItems] = useState<{ userMessage: string }[]>([]); // Lưu trữ danh sách câu hỏi trong phần nav1
+    const [isDarkMode, setIsDarkMode] = useState(false); // State để lưu trạng thái dark mode
+    const chatHistoryRef = useRef<HTMLDivElement>(null); // Tham chiếu đến div chứa lịch sử chat
 
     // Hàm xử lý khi nhấn vào mục trong danh sách
     const handleItemClick = (text: string) => {
-        setInputValue(text); // Cập nhật giá trị ô nhập liệu
+        setInputValue(text); // Cập nhật giá trị ô nhập liệu khi click vào ví dụ
     };
 
     // Hàm xử lý khi người dùng gõ vào ô nhập liệu
@@ -16,39 +20,76 @@ const ChatbotLayout: React.FC = () => {
         setInputValue(e.target.value); // Cập nhật giá trị ô nhập liệu khi gõ
     };
 
+    // Hàm gửi câu hỏi và nhận câu trả lời
+    const handleSendMessage = () => {
+        if (inputValue.trim()) {
+            // Thêm câu hỏi của người dùng vào danh sách các cuộc trò chuyện
+            setMessages(prevMessages => [
+                ...prevMessages,
+                { userMessage: inputValue, botReply: "This is a response from ChatGPT." } // Giả lập câu trả lời từ ChatGPT
+            ]);
+
+            // Thêm câu hỏi vào phần nav1
+            setNavItems(prevNavItems => [
+                ...prevNavItems,
+                { userMessage: inputValue }
+            ]);
+
+            setInputValue(""); // Xóa ô nhập liệu sau khi gửi
+        }
+    };
+
+    // Hàm xử lý khi nhấn Enter
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleSendMessage(); // Gửi tin nhắn khi nhấn Enter
+        }
+    };
+
+    // Scroll đến tin nhắn cuối cùng mỗi khi có tin nhắn mới
+    useEffect(() => {
+        if (chatHistoryRef.current) {
+            chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
+        }
+    }, [messages]);
+
+    // Hàm xử lý khi click vào nút Clear conversations
+    const handleClearConversations = () => {
+        setMessages([]); // Xóa các tin nhắn nhưng giữ lại navItems
+    };
+
+    // Hàm xử lý chuyển đổi chế độ Dark Mode
+    const handleToggleDarkMode = () => {
+        setIsDarkMode(prevState => !prevState); // Đảo trạng thái dark mode
+    };
+
     return (
-        <div className="app">
+        <div className={`app ${isDarkMode ? 'dark-mode' : ''}`}> {/* Thêm class dark-mode nếu ở chế độ tối */}
+            {/* Sidebar */}
             <aside className="sidebar">
                 <button className="sidebar-button">
                     <FontAwesomeIcon icon={faPlus} className="icon" />
                     <span>New chat</span>
                 </button>
+
                 <nav className="nav1">
                     <ul>
-                        {[
-                            'What is ChatGPT',
-                            'What is ChatGPT-4',
-                            'What is OpenAI',
-                            'What is StableDiffusion',
-                            'How to access Bing AI',
-                            'Can I use Notion AI',
-                            'ChatGPT for Google',
-                            'What is TikTok AI voice',
-                            'What is AI'
-                        ].map((item, index) => (
+                        {navItems.map((item, index) => (
                             <li
                                 key={index}
                                 className="nav-item"
-                                onClick={() => handleItemClick(item)} // Thêm sự kiện onClick
+                                onClick={() => handleItemClick(item.userMessage)} // Khi click vào câu hỏi người dùng
                             >
                                 <FontAwesomeIcon icon={faCommentAlt} className="icon" />
-                                <span>{item}</span>
+                                <span>{item.userMessage}</span>
                             </li>
                         ))}
                     </ul>
                 </nav>
+
+                {/* Footer Sidebar */}
                 <div className="sidebar-footer">
-                    <button className="sidebar-button">
+                    <button className="sidebar-button" onClick={handleClearConversations}>
                         <FontAwesomeIcon icon={faTrashAlt} className="icon" />
                         <span>Clear conversations</span>
                     </button>
@@ -57,7 +98,7 @@ const ChatbotLayout: React.FC = () => {
                         <span>Upgrade to Plus</span>
                         <span className="new-badge">NEW</span>
                     </button>
-                    <button className="sidebar-button">
+                    <button className="sidebar-button" onClick={handleToggleDarkMode}>
                         <FontAwesomeIcon icon={faMoon} className="icon" />
                         <span>Dark mode</span>
                     </button>
@@ -71,72 +112,25 @@ const ChatbotLayout: React.FC = () => {
                     </button>
                 </div>
             </aside>
+
+            {/* Main Content */}
             <main className="main-content">
                 <h1 className="title">ChatGPT</h1>
+
                 <div className="grid">
-                    <div className="grid-item">
-                        <h2 className="section-title">
-                            <FontAwesomeIcon icon={faLightbulb} className="icon" />
-                            Examples
-                        </h2>
-                        <ul>
-                            {[
-                                '“Explain quantum computing in simple terms” →',
-                                '“Got any creative ideas for a 10-year-old’s birthday?” →',
-                                '“How do I make an HTTP request in Javascript?” →'
-                            ].map((example, index) => (
-                                <li
-                                    key={index}
-                                    className="example-item"
-                                    onClick={() => handleItemClick(example)} // Mỗi example click sẽ đưa vào input
-                                >
-                                    {example}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="grid-item">
-                        <h2 className="section-title">
-                            <FontAwesomeIcon icon={faBolt} className="icon" />
-                            Capabilities
-                        </h2>
-                        <ul>
-                            {[
-                                'Remembers what user said earlier in the conversation',
-                                'Allows user to provide follow-up corrections',
-                                'Trained to decline inappropriate requests'
-                            ].map((capability, index) => (
-                                <li
-                                    key={index}
-                                    className="capability-item"
-                                    onClick={() => handleItemClick(capability)} // Mỗi capability click sẽ đưa vào input
-                                >
-                                    {capability}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="grid-item">
-                        <h2 className="section-title">
-                            <FontAwesomeIcon icon={faExclamationTriangle} className="icon" />
-                            Limitations
-                        </h2>
-                        <ul>
-                            {[
-                                'May occasionally generate incorrect information',
-                                'May occasionally produce harmful instructions or biased content',
-                                'Limited knowledge of world and events after 2021'
-                            ].map((limitation, index) => (
-                                <li
-                                    key={index}
-                                    className="limitation-item"
-                                    onClick={() => handleItemClick(limitation)} // Mỗi limitation click sẽ đưa vào input
-                                >
-                                    {limitation}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {/* Các sections khác vẫn giữ nguyên */}
+                </div>
+
+                {/* Hiển thị các cuộc trò chuyện */}
+                <div className="chat-history" ref={chatHistoryRef}>
+                    {messages.map((message, index) => (
+                        <div key={index} className={`chat-message ${message.userMessage ? 'user' : 'bot'}`}>
+                            <div className="message-content">
+                                <strong>{message.userMessage ? 'User' : 'ChatGPT'}:</strong>
+                                <p>{message.userMessage || message.botReply}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
 
                 <div className="messageBox">
@@ -151,6 +145,7 @@ const ChatbotLayout: React.FC = () => {
                         </label>
                         <input type="file" id="file" name="file" />
                     </div>
+
                     <input
                         required
                         placeholder="Message..."
@@ -158,18 +153,24 @@ const ChatbotLayout: React.FC = () => {
                         id="messageInput"
                         value={inputValue} // Gán giá trị ô nhập liệu từ state
                         onChange={handleInputChange} // Cập nhật giá trị khi người dùng gõ
+                        onKeyPress={handleKeyPress} // Gửi khi nhấn Enter
                     />
-                    <button id="sendButton">
+                    <button id="sendButton" onClick={handleSendMessage}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663">
-                            <path fill="none" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888" />
-                            <path strokeLinejoin="round" strokeLinecap="round" strokeWidth="33.67" stroke="#6c6c6c" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888" />
+                            <path
+                                fill="none"
+                                d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"
+                            ></path>
+                            <path
+                                strokeLinejoin="round"
+                                strokeLinecap="round"
+                                strokeWidth="33.67"
+                                stroke="#6c6c6c"
+                                d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"
+                            ></path>
                         </svg>
                     </button>
                 </div>
-
-                <p className="footer-text">
-                    ChatGPT Mar 14 Version. Free Research Preview. Our goal is to make AI systems more natural and safe to interact with. Your feedback will help us improve.
-                </p>
             </main>
         </div>
     );
