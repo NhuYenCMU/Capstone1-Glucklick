@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Button, FormGroup, Input, Container } from 'reactstrap';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify'; // Import Toastify
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS Toastify
 
 const RegisterPage: React.FC = () => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
 
     const handleRegister = async () => {
         if (!email || !username || !password) {
-            setErrorMessage('Please fill in all fields');
+          const errorMessage =" Please fill in all fields";
+          toast.error(errorMessage);
             return;
         }
 
@@ -23,23 +24,21 @@ const RegisterPage: React.FC = () => {
             });
 
             if (response.status === 201) {
-                setSuccessMessage('Registration successful! You can now log in.');
-                setErrorMessage('');
+                const successMessage= "Registration successful! You can now log in.";
+                toast.success(successMessage, { theme: "colored" });
                 setEmail('');
                 setUsername('');
                 setPassword('');
             }
         } catch (error: any) {
-            setErrorMessage(error.response?.data?.message || 'Registration failed');
-            setSuccessMessage('');
+          const message = error.response?.data?.message || 'Registration failed';
+          toast.error(message, { theme: "colored" }); 
         }
     };
 
     return (
         <Container className="auth-form p-4">
             <h2>Create Glücklich Account</h2>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-            {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
             <FormGroup>
                 <label>Email Address</label>
                 <Input
@@ -68,6 +67,7 @@ const RegisterPage: React.FC = () => {
                 />
             </FormGroup>
             <Button color="primary" block onClick={handleRegister}>Register</Button>
+        <ToastContainer /> 
         </Container>
     );
 };
