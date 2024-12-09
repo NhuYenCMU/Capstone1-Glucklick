@@ -4,8 +4,6 @@ import { Footer } from './../../components/common/Footer';
 import { Testanswer1 } from '../Testanswer/Testanswer1'; // Correct import
 import CanvasBackground from './../../components/Backgrough';
 import imageBG from './../../features/image/background.png';
-import Testanswer2 from '../Testanswer/Testanswer2';
-import Testanswer3 from '../Testanswer/Testanswer3';
 
 const Homepage: React.FC = () => {
   const scrollToRef = useRef<HTMLDivElement | null>(null); // ref to scroll to the Testanswer1 section
@@ -86,8 +84,6 @@ const Homepage: React.FC = () => {
       {/* Section that appears when the user clicks the button */}
       <div ref={scrollToRef}>
         <Testanswer1 />
-        <Testanswer2 />
-        <Testanswer3 />
       </div>
 
       <Footer />

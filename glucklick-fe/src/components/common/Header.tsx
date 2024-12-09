@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => 
                 <a className="item" href="#my-results">My Results</a>
                 <a className="item" href="#dashboard">Dashboard</a>
                 <a className="item" href="/chatbot">ChatBot</a>
-                <a className="item" href="#blog">Blog</a>
+                <a className="item" href="/Mycourses">Mycourses</a>
 {/* =======
                 <Link className="item" to="/">Home</Link>
                 <Link className="item" to="/my-results">My Results</Link>
