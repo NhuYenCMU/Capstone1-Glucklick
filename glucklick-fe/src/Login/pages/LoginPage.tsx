@@ -77,7 +77,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                 </div>
                 <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
             </FormGroup>
-            <Button className="btn-auth" color="primary" block onClick={handleLogin}>Login</Button>
+            <Button color="primary" block onClick={handleLogin}>Login</Button>
         </Container>
     );
 };

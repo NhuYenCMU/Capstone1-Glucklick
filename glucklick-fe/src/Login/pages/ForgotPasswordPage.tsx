@@ -39,7 +39,7 @@ const ForgotPasswordPage: React.FC = () => {
                         value={email}
                     />
                 </FormGroup>
-                <Button className="btn-auth" color="primary" onClick={handleForgotPassword}>Send Reset Link</Button>
+                <Button color="primary" onClick={handleForgotPassword}>Send Reset Link</Button>
             </div>
         </Container>
     );

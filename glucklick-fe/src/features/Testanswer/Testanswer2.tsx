@@ -24,7 +24,7 @@ export const Testanswer2: React.FC = () => {
             {/* Generate 10 buttons dynamically */}
             {Array.from({ length: 10 }, (_, index) => (
               <Link
-                to={`/page3`}
+                to={`/page${index + 1}`}
                 key={index}
                 className={`tab-button ${location.pathname === `/page${index + 1}` ? 'active' : ''}`}
               >

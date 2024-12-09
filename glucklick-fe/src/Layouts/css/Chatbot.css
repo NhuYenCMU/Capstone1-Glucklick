@@ -1,336 +1,235 @@
-/* Reset body margin và thiết lập font mặc định */
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0; /* Màu nền sáng */
-  color: #333;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow: hidden; /* Đảm bảo không có thanh cuộn ngoài ý muốn */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #333;
 }
 
-/* Cấu trúc chính của ứng dụng */
 .app {
-  display: flex;
-  height: 100%;
-  overflow: hidden;
+    display: flex;
+    height: 100vh;
 }
 
-/* Sidebar */
 .sidebar {
-  background-color: #1a202c; /* Màu nền tối */
-  color: white;
-  width: 256px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  position: fixed; /* Sidebar cố định */
-  top: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 10;
-  overflow-y: auto;
+    background-color: #1a202c; /* Màu nền tối */
+    color: white;
+    width: 256px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Các nút trong sidebar */
 .sidebar-button {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 8px 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
 }
 
 .sidebar-button .icon {
-  margin-right: 8px;
+    margin-right: 8px;
 }
 
-/* Navigation items trong sidebar */
 .nav1 {
-  flex: 1;
-  padding: 0; /* Loại bỏ padding, giữ sát lề trái */
-  margin-left: -50px; /* Thêm khoảng cách nhỏ từ lề trái */
+    flex: 1;
+    padding: 10px;
 }
 
 .nav-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px; /* Giảm khoảng cách giữa các mục */
-  cursor: pointer;
-  gap: 12px; /* Khoảng cách giữa icon và text */
-  padding: 6px 12px; /* Cải thiện padding, giảm khoảng cách giữa text và viền */
-  border-radius: 6px;
-  transition: background-color 0.3s, padding-left 0.3s;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .nav-item:hover {
-  background-color: #2d3748; /* Màu nền khi hover */
-  padding-left: 16px; /* Tạo hiệu ứng đẩy sang trái khi hover */
+    background-color: #e0e0e0;
 }
 
-.nav-item .icon {
-  font-size: 18px; /* Tăng kích thước icon để dễ nhìn */
-}
-
-/* Footer của sidebar */
-.sidebar-footer {
-  margin-top: auto;
-}
-
-/* Nội dung chính (main-content) */
-.main-content {
-  flex: 1;
-  margin-left: 256px; /* Đảm bảo không bị che khuất bởi sidebar */
-  padding: 20px;
-  overflow: auto; /* Đảm bảo nội dung không bị tràn ra ngoài */
-}
-
-/* Tiêu đề chính */
-.title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 32px;
-}
-
-/* Giao diện tìm kiếm */
-.search-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.search-box input {
-  width: 70%;
-  padding: 15px;
-  font-size: 18px;
-  border-radius: 30px;
-  border: 2px solid #ccc;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Giao diện khung chat */
 .chat-box {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fafafa;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fafafa;
 }
 
+.sidebar-footer {
+    margin-top: auto;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 32px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+.grid-item {
+    background-color: #f7fafc; /* Màu nền sáng */
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.example-item,
+.capability-item,
+.limitation-item {
+    margin-bottom: 8px;
+}
+
+/* From Uiverse.io by LightAndy1 */ 
 .messageBox {
-  max-width: 700px;  /* Tăng chiều rộng tối đa */
-  width: auto;       /* Chiều rộng tự động thay đổi theo nội dung */
-  height: auto;      /* Chiều cao tự động thay đổi theo nội dung */
-  min-height: 50px;  /* Đảm bảo chiều cao tối thiểu */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #2d2d2d;
-  padding: 0 20px;
-  border-radius: 10px;
-  border: 1px solid rgb(63, 63, 63);
-  margin: 0 auto;
+    width: 700px; /* Tăng width lên 800px */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2d2d2d;
+    padding: 0 20px;
+    border-radius: 10px;
+    border: 1px solid rgb(63, 63, 63);
+    margin: 0 auto; /* Căn giữa */
+  }
   
-  /* Căn dưới cùng của trang */
-  position: fixed;
-  bottom: 20px; /* Sát dưới với khoảng cách 20px */
-  left: 60%;
-  transform: translateX(-50%); /* Căn giữa ngang */
-}
-
-.messageBox:focus-within {
-  border: 1px solid rgb(110, 110, 110);
-}
-
-/* Chỉnh sửa cho file upload */
-.fileUploadWrapper {
-  width: fit-content;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Arial, Helvetica, sans-serif;
-  margin-right: 15px; /* Thêm khoảng cách giữa file upload và input */
-}
-
-#file {
-  display: none;
-}
-
-.fileUploadWrapper label {
-  cursor: pointer;
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.fileUploadWrapper label svg {
-  height: 22px; /* Tăng kích thước svg */
-}
-
-.fileUploadWrapper label svg path {
-  transition: all 0.3s;
-}
-
-.fileUploadWrapper label svg circle {
-  transition: all 0.3s;
-}
-
-.fileUploadWrapper label:hover svg path {
-  stroke: #fff;
-}
-
-.fileUploadWrapper label:hover svg circle {
-  stroke: #fff;
-  fill: #3c3c3c;
-}
-
-.fileUploadWrapper label:hover .tooltip {
-  display: block;
-  opacity: 1;
-}
-
-/* Tooltip thông báo khi hover */
-.tooltip {
-  position: absolute;
-  top: -45px; /* Tăng khoảng cách tooltip */
-  display: none;
-  opacity: 0;
-  color: white;
-  font-size: 12px; /* Tăng kích thước chữ */
-  text-wrap: nowrap;
-  background-color: #000;
-  padding: 6px 10px;
-  border: 1px solid #3c3c3c;
-  border-radius: 5px;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.596);
-  transition: all 0.3s;
-}
-
-/* Styling cho input tin nhắn */
-#messageInput {
-  width: 560px; /* Tăng chiều rộng của input */
-  height: 100%;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  padding-left: 15px; /* Tăng khoảng cách bên trái */
-  color: white;
-  font-size: 16px; /* Tăng kích thước chữ */
-}
-
-/* Button gửi tin nhắn */
-#sendButton {
-  width: fit-content;
-  height: 100%;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-#sendButton svg {
-  height: 24px; /* Tăng kích thước của svg trong button */
-  transition: all 0.3s;
-}
-
-#sendButton svg path {
-  transition: all 0.3s;
-}
-
-#sendButton:hover svg path {
-  fill: #3c3c3c;
-  stroke: white;
-}
-/* Cấu trúc khung chat */
-.chat-history {
-  max-height: 70vh;
-  overflow-y: auto;
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Khung tin nhắn của người dùng */
-.chat-message.user {
-  display: flex;
-  justify-content: flex-end; /* Đẩy tin nhắn người dùng sang bên phải */
-  margin-bottom: 10px;
-}
-
-/* Khung tin nhắn của ChatGPT */
-.chat-message.bot {
-  display: flex;
-  justify-content: flex-start; /* Đẩy tin nhắn bot sang bên trái */
-  margin-bottom: 10px;
-}
-
-/* Nội dung tin nhắn */
-.message-content {
-  max-width: 60%;
-  padding: 12px;
-  background-color: #e0f7fa;
-  border-radius: 15px;
-  font-size: 14px;
-  line-height: 1.5;
-  position: relative;
-  word-wrap: break-word;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Định dạng tin nhắn người dùng */
-.chat-message.user .message-content {
-  background-color: #4caf50; /* Màu nền cho tin nhắn người dùng */
-  color: white;
-  border-radius: 15px 15px 0 15px; /* Bo góc cho tin nhắn của người dùng */
-}
-
-/* Định dạng tin nhắn của bot */
-.chat-message.bot .message-content {
-  background-color: #eeeeee; /* Màu nền cho tin nhắn bot */
-  color: #333;
-  border-radius: 15px 15px 15px 0; /* Bo góc cho tin nhắn của bot */
-}
-
-/* Thêm bóng cho tin nhắn */
-.chat-message .message-content {
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Định dạng tên người gửi */
-.message-content strong {
-  font-weight: bold;
-  color: #00796b;
-  margin-bottom: 5px;
-  display: block;
-}
-/* CSS cho Dark Mode */
-.dark-mode {
-  background-color: 	rgb(8,8,8);
-  color: #ffffff;
-}
-
-.dark-mode .sidebar {
-  background-color: 	rgb(8,8,8);
-}
-
-.dark-mode .messageBox {
-  background-color: 	rgb(8,8,8);
-}
-.dark-mode .chat-history{
-  background-color: 	rgb(56,56,56);
+  .messageBox:focus-within {
+    border: 1px solid rgb(110, 110, 110);
+  }
+  
+  .fileUploadWrapper {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 15px; /* Thêm khoảng cách giữa file upload và input */
+  }
+  
+  #file {
+    display: none;
+  }
+  
+  .fileUploadWrapper label {
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .fileUploadWrapper label svg {
+    height: 22px; /* Tăng kích thước svg */
+  }
+  
+  .fileUploadWrapper label svg path {
+    transition: all 0.3s;
+  }
+  
+  .fileUploadWrapper label svg circle {
+    transition: all 0.3s;
+  }
+  
+  .fileUploadWrapper label:hover svg path {
+    stroke: #fff;
+  }
+  
+  .fileUploadWrapper label:hover svg circle {
+    stroke: #fff;
+    fill: #3c3c3c;
+  }
+  
+  .fileUploadWrapper label:hover .tooltip {
+    display: block;
+    opacity: 1;
+  }
+  
+  .tooltip {
+    position: absolute;
+    top: -45px; /* Tăng khoảng cách tooltip */
+    display: none;
+    opacity: 0;
+    color: white;
+    font-size: 12px; /* Tăng kích thước chữ */
+    text-wrap: nowrap;
+    background-color: #000;
+    padding: 6px 10px;
+    border: 1px solid #3c3c3c;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.596);
+    transition: all 0.3s;
+  }
+  
+  #messageInput {
+    width: 560px; /* Tăng chiều rộng của input */
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding-left: 15px; /* Tăng khoảng cách bên trái */
+    color: white;
+    font-size: 16px; /* Tăng kích thước chữ */
+  }
+  
+  #messageInput:focus ~ #sendButton svg path,
+  #messageInput:valid ~ #sendButton svg path {
+    fill: #3c3c3c;
+    stroke: white;
+  }
+  
+  #sendButton {
+    width: fit-content;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  #sendButton svg {
+    height: 24px; /* Tăng kích thước của svg trong button */
+    transition: all 0.3s;
+  }
+  
+  #sendButton svg path {
+    transition: all 0.3s;
+  }
+  
+  #sendButton:hover svg path {
+    fill: #3c3c3c;
+    stroke: white;
+  }
+  
+.footer-text {
+    font-size: 12px;
+    color: #666;
+    margin-top: 16px;
 }
