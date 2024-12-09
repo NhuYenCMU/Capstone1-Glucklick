@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify'; // Import Toastify
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS Toastify
+import './css/Toast.css';
 interface LoginPageProps {
     onLogin: () => void;
 }
@@ -34,13 +35,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             } else {
                 sessionStorage.setItem('token', response.data.token);
             }
-            toast.success('Login successful!', { theme: "colored" });
+            toast.success(response.data.message, { theme: "colored" });
             // Đặt callback khi đăng nhập thành công
             onLogin();
             navigate('/');
         }
     } catch (error: any) {
-      const message = error.response?.data?.message || 'Login failed';
+      const message = error.response?.data?.message;
       toast.error(message, { theme: "colored" });
     }
     };
