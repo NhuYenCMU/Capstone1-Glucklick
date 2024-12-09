@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Button, FormGroup, Input, Container } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify'; // Import Toastify
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS Toastify
 interface LoginPageProps {
     onLogin: () => void;
 }
@@ -11,12 +12,12 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async () => {
       if (!username || !password) {
-        setErrorMessage('Please enter both username and password');
+        const message = "Please enter both username and password";
+        toast.error(message);
         return;
     }
 
@@ -33,13 +34,14 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             } else {
                 sessionStorage.setItem('token', response.data.token);
             }
-
+            toast.success('Login successful!', { theme: "colored" });
             // Đặt callback khi đăng nhập thành công
             onLogin();
             navigate('/');
         }
     } catch (error: any) {
-        setErrorMessage(error.response?.data?.message || 'Login failed');
+      const message = error.response?.data?.message || 'Login failed';
+      toast.error(message, { theme: "colored" });
     }
     };
 
@@ -47,7 +49,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
         <Container className="auth-form p-4">
             <h2>Welcome to Glücklich..!</h2>
             <p>To ensure the security of your account, please login.</p>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            
+            {/* {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} */}
             <FormGroup>
                 <label>User name</label>
                 <Input
@@ -78,6 +81,16 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                 <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
             </FormGroup>
             <Button color="primary" block onClick={handleLogin}>Login</Button>
+            <ToastContainer position="top-right"
+              autoClose={3000} // Tự động đóng sau 3 giây
+              hideProgressBar={false} // Hiện thanh tiến trình
+              newestOnTop={true} // Sắp xếp thông báo mới lên trên
+              closeOnClick // Đóng khi nhấp chuột
+              rtl={false} // Hỗ trợ hướng từ trái sang phải
+              pauseOnFocusLoss // Dừng khi chuyển cửa sổ
+              draggable // Cho phép kéo
+              pauseOnHover // Dừng khi rê chuột qua
+              theme="colored"  />
         </Container>
     );
 };
