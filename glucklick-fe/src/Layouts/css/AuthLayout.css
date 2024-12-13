@@ -126,30 +126,7 @@ body, html {
     border-color: #007bff;
     outline: none;
   }
-  
-  /* Button */
-  button {
-    background-color: #33b5e5;
-    border: none;
-    color: white;
-    font-size: 1.2rem; /* Increased font size */
-    padding: 1rem;
-    width: 100%;
-    border-radius: 30px; /* Larger radius for button */
-    transition: background-color 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  button:hover {
-    background-color: #28a0d4;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  button:active {
-    background-color: #1e90c1;
-  }
-  
+
   /* Responsive */
   @media (max-width: 768px) {
     .app-container {

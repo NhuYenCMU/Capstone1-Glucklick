@@ -1,11 +1,9 @@
 import React, { useRef } from 'react'; // Importing React and useRef    
 import './CSS/Testanswer.css'; // Importing the CSS file for styles
-import { Link, useLocation } from 'react-router-dom'; // Importing Link from react-router-dom for navigation
 import imageBG from './../../features/image/background.png'; // Importing the background image
 
 export const Testanswer1: React.FC = () => {
   const scrollToRef = useRef<HTMLDivElement | null>(null); // ref for smooth scroll to content section
-  const location = useLocation(); // Hook to get the current route path
 
   return (
     <div ref={scrollToRef} className="app-container2">
@@ -21,17 +19,18 @@ export const Testanswer1: React.FC = () => {
         <div className="left-container">
           <h3>What do you want to achieve?</h3>
           <div className="tabs">
-            {/* Generate 10 buttons dynamically */}
-            {Array.from({ length: 10 }, (_, index) => (
-              <Link
-                to={`/page2`}
-                key={index}
-                className={`tab-button ${location.pathname === `/page${index + 1}` ? 'active' : ''}`}
-              >
-                Page {index + 1}
-              </Link>
-            ))}
-            
+            <a href="/page2" className="tab-button">Web development</a>
+            <a href="/page2" className="tab-button">Data science</a>
+            <a href="/page2" className="tab-button">Computer science</a>
+            <a href="/page2n" className="tab-button">Web design</a>
+            <a href="/page2" className="tab-button">Artificial intelligence</a>
+            <a href="/page2" className="tab-button">Machine learning</a>
+            <a href="/page2" className="tab-button">Game development</a>
+            <a href="/page2" className="tab-button">Mobile development</a>
+            <a href="/page2" className="tab-button">Data visualization</a>
+            <a href="/page2" className="tab-button">Cloud computing</a>
+            <a href="/page2" className="tab-button">Cybersecurity</a>
+            <a href="/page2" className="tab-button">Not sure yet</a>
           </div>
           {/* Skip Personalization Link */}
           <a href="/" className="Skip">Skip personalization</a> 

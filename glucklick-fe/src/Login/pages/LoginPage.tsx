@@ -81,7 +81,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                 </div>
                 <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
             </FormGroup>
-            <Button color="primary" block onClick={handleLogin}>Login</Button>
+            <Button className="btn" color="primary" block onClick={handleLogin}>Login</Button>
             <ToastContainer position="top-right"
               autoClose={3000} // Tự động đóng sau 3 giây
               hideProgressBar={false} // Hiện thanh tiến trình

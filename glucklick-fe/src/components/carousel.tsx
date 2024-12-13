@@ -9,7 +9,7 @@ const CarouselExample: React.FC = () => {
           <img src="/slide1.png" className="d-block w-100" alt="" />
           <div className="carousel-caption">
             <h5>HELP YOU FIND THE RIGHT PROGAMMING COURSES</h5>
-            <a href="#more-info" className="btn btn-primary">Get started now</a>
+            <a href="/page1" className="btn btn-primary">Get started now</a>
           </div>
         </div>
         <div className="carousel-item">

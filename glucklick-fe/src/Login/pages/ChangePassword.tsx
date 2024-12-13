@@ -88,7 +88,7 @@ const ChangePasswordPage: React.FC = () => {
                     value={confirmPassword}
                 />
             </FormGroup>
-            <Button color="primary" block onClick={handleChangePassword}>Change Password</Button>
+            <Button className="btn" color="primary" block onClick={handleChangePassword}>Change Password</Button>
         </Container>
     );
 };
