@@ -143,7 +143,7 @@ const RegisterPage: React.FC = () => {
                     </p>
                 )}
             </FormGroup>
-            <Button color="primary" block onClick={handleRegister}>Register</Button>
+            <Button className="btn" color="primary" block onClick={handleRegister}>Register</Button>
         <ToastContainer /> 
         </Container>
     );

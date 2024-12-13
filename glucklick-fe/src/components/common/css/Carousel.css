@@ -1,7 +1,7 @@
 .carousel-item img {
-  height: 400px;
-  width: 100%;  /* Thay đổi chiều rộng của ảnh để phù hợp với chiều rộng container */
-  object-fit: cover; /* Giúp hình ảnh không bị méo */
+  height: 400px;  /* Tăng chiều cao */
+  width: 100%;  /* Giữ nguyên chiều rộng */
+  object-fit: cover;  /* Giúp hình ảnh không bị méo */
 }
 
 .carousel-control-prev,
