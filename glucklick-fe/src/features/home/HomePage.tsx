@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import './css/HomePage.css';
 import { Footer } from './../../components/common/Footer';
 import { Testanswer1 } from '../Testanswer/Testanswer1'; // Correct import
-import CanvasBackground from './../../components/Backgrough';
-import imageBG from './../../features/image/background.png';
+// import CanvasBackground from './../../components/Backgrough';
+// import imageBG from './../../features/image/background.png';
+
 
 const Homepage: React.FC = () => {
   const scrollToRef = useRef<HTMLDivElement | null>(null); // ref to scroll to the Testanswer1 section
@@ -19,6 +20,7 @@ const Homepage: React.FC = () => {
     // Add Font Awesome CDN dynamically
     const link = document.createElement('link');
     link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css';
+    link.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous';
     link.rel = 'stylesheet';
     link.type = 'text/css';
     document.head.appendChild(link);
@@ -26,11 +28,12 @@ const Homepage: React.FC = () => {
     return () => {
       document.head.removeChild(link);
     };
+    
   }, []);
 
   return (
-    <div className="homepage">
-      <CanvasBackground />
+    <div className="homepage-container">
+      {/* <CanvasBackground />
       <section className="hero">
         <div className="hero-content">
           <h1>"It's wonderful to feel understood finally."</h1>
@@ -80,8 +83,29 @@ const Homepage: React.FC = () => {
             <img src="/kotlin.png" alt="Kotlin" className="bg-image" />
           </div>
         </div>
-      </section>
+      </section> */}
       {/* Section that appears when the user clicks the button */}
+      <div id="carouselExampleControls" className="carousel-slide" data-bs-ride="carousel">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img src="./slide1.png" className="d-block w-100" alt="slide 1"/>
+          </div>
+          <div className="carousel-item">
+            <img src="./slide2.png" className="d-block w-100" alt="slide 2"/>
+          </div>
+          <div className="carousel-item">
+            <img src="./slide2.png" className="d-block w-100" alt="slide 3"/>
+          </div>
+        </div>
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
       <div ref={scrollToRef}>
         <Testanswer1 />
       </div>
