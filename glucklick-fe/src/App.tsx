@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './components/common/Header';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';  // Đảm bảo Bootstrap JS đã được import
+
 
 // Pages
 import RegisterPage from './Login/pages/RegisterPage';
