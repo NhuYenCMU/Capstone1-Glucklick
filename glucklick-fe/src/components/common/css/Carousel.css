@@ -1,0 +1,136 @@
+.carousel-item img {
+  height: 400px;
+  width: 100%;  /* Thay đổi chiều rộng của ảnh để phù hợp với chiều rộng container */
+  object-fit: cover; /* Giúp hình ảnh không bị méo */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 40px;  /* Kích thước của nút điều khiển */
+  height: 40px;  /* Kích thước của nút điều khiển */
+  background-color: rgba(0, 0, 0, 0.5);  /* Màu nền của nút */
+  border-radius: 50%;  /* Bo tròn nút */
+  display: flex;  /* Dùng flexbox để căn giữa nội dung */
+  justify-content: center;  /* Căn giữa icon trong nút */
+  align-items: center;  /* Căn giữa icon trong nút */
+  position: absolute;
+  top: 50%;  /* Căn giữa theo chiều dọc */
+  transform: translateY(-50%);  /* Điều chỉnh lại để nút ở chính giữa */
+  z-index: 10;  /* Đảm bảo nút nằm trên cùng */
+}
+
+.carousel-control-prev {
+  left: 10px;  /* Đặt nút "Previous" về bên trái */
+}
+
+.carousel-control-next {
+  right: 10px;  /* Đặt nút "Next" về bên phải */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 20px;  /* Kích thước icon trong nút */
+  height: 20px;
+}
+
+.carousel-inner {
+  border-radius: 2px;  /* Bo tròn vùng chứa ảnh */
+  position: relative;  /* Đảm bảo các nút điều khiển được đặt đúng vị trí */
+}
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  top: 35%;  /* Căn giữa theo chiều dọc */
+  left: 40%;  /* Đặt cách lề trái 10% */
+  transform: translateX(-50%);
+  color: #ffde55;
+  text-align: center;
+  padding: 10px;
+  width: 80%;
+}
+
+.carousel-caption h5 {
+  font-size: 40px;
+  font-weight: 600;
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+
+}
+.carousel-caption .btn {
+  background-color: #78ccf9;  /* Màu nền của nút */
+  color: rgb(254, 254, 254);
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.carousel-caption .btn:hover {
+  background-color: #f58484;  /* Màu nền khi hover */
+  transform: scale(1.1);
+}
+.carousel-caption2 {
+  position: absolute;
+  bottom: 20px;
+  top: 30%;  /* Căn giữa theo chiều dọc */
+  left: 35%;  /* Đặt cách lề trái 40% */
+  transform: translateX(-50%);
+  color: #ffde55;
+  text-align: center;
+  padding: 10px;
+  width: 60%;
+}
+
+.carousel-caption2 h5 {
+  font-size: 40px;
+  font-weight: 600;
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+.carousel-caption2 .btn {
+  background-color: #78ccf9;  /* Màu nền của nút */
+  color: rgb(254, 254, 254);
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.carousel-caption2 .btn:hover {
+  background-color: #f58484;  /* Màu nền khi hover */
+  transform: scale(1.1);
+}
+.carousel-caption3 {
+  position: absolute;
+  bottom: 20px;
+  top: 30%;  /* Căn giữa theo chiều dọc */
+  right: 10px;
+  transform: translateX(0%);
+  color: #ffde55;
+  text-align: center;
+  padding: 10px;
+  width: 60%;
+}
+
+.carousel-caption3 h5 {
+  font-size: 40px;
+  font-weight: 600;
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+.carousel-caption3 .btn {
+  background-color: #78ccf9;  /* Màu nền của nút */
+  color: rgb(254, 254, 254);
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.carousel-caption3 .btn:hover {
+  background-color: #f58484;  /* Màu nền khi hover */
+  transform: scale(1.1);
+}

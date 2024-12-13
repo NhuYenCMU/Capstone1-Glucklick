@@ -36,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => 
     return (
         <header className="header">
             <div className="logo-header" onClick={handleLogoClick}>
-                GLUCKLICH
+              <img src="/Glücklich.png" className="d-block w-100" alt="Logo" />
             </div>
             <nav className="nav">
 {/* <<<<<<< HEAD */}
@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => 
                 <a className="item" href="#my-results">My Results</a>
                 <a className="item" href="#dashboard">Dashboard</a>
                 <a className="item" href="/chatbot">ChatBot</a>
-                <a className="item" href="/Mycourses">Mycourses</a>
+                <a className="item" href="/Mycourses">My Courses</a>
 {/* =======
                 <Link className="item" to="/">Home</Link>
                 <Link className="item" to="/my-results">My Results</Link>

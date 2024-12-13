@@ -11,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 2vh 5vw;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   box-sizing: border-box;
   position: relative; /* Added to allow z-index to work */
   z-index: 10; /* Set high to ensure header appears above other content */
@@ -22,8 +22,9 @@
   display: flex;
   align-items: center;
   gap: 50px;
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-family: 'Open Sans',Arial,sans-serif;
+  font-weight: bold;
   margin-left: 80px;
 }
 
@@ -41,11 +42,9 @@
 }
 
 .logo-header {
-  color: #118eb0;
-  font-weight: bold;
-  font-size: 24px;
-  cursor: pointer;
-  text-shadow: 2px 2px 4px rgba(18, 52, 87, 0.3), 0 0 10px #d0dcd8, 0 0 20px #6389ec;
+  height: 50px;
+  width: 190px ;
+  object-fit: cover
 }
 
 .nav a {
