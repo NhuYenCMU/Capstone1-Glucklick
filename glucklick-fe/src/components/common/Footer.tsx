@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
 
       <div className="nav-links">
         <a href="/">Home</a>
-        <a href="#my-results">My Results</a>
+        <a href="/ResultsPage">My Results</a>
         <a href="/chatbot">ChatBot</a>
         <a href="#about-us">About Us</a>
         <a href="#contact-us">Contact Us</a>

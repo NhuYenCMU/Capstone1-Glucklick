@@ -82,7 +82,7 @@ body {
 /* Nội dung chính (main-content) */
 .main-content {
   flex: 1;
-  margin-left: 30px; /* Đảm bảo không bị che khuất bởi sidebar */
+  margin-left: 200px; /* Đảm bảo không bị che khuất bởi sidebar */
   padding: 20px;
   overflow: auto; /* Đảm bảo nội dung không bị tràn ra ngoài */
 }
@@ -92,6 +92,9 @@ body {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 32px;
+  margin-right: 140px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Giao diện tìm kiếm */
@@ -121,7 +124,7 @@ body {
 }
 
 .messageBox {
-  max-width: 700px;  /* Tăng chiều rộng tối đa */
+  max-width: 900px;  /* Tăng chiều rộng tối đa */
   width: auto;       /* Chiều rộng tự động thay đổi theo nội dung */
   height: auto;      /* Chiều cao tự động thay đổi theo nội dung */
   min-height: 50px;  /* Đảm bảo chiều cao tối thiểu */
@@ -137,7 +140,7 @@ body {
   /* Căn dưới cùng của trang */
   position: fixed;
   bottom: 20px; /* Sát dưới với khoảng cách 20px */
-  left: 60%;
+  left: 58%;
   transform: translateX(-50%); /* Căn giữa ngang */
 }
 
@@ -254,15 +257,22 @@ body {
 }
 /* Cấu trúc khung chat */
 .chat-history {
-  max-height: 70vh;
-  overflow-y: auto;
+  height: 70vh; /* Chiều cao chiếm 70% chiều cao màn hình */
+  width: 70vw; /* Chiều rộng chiếm 70% chiều rộng màn hình */
+  min-width: 300px; /* Giới hạn chiều rộng tối thiểu */
+  min-height: 200px; /* Giới hạn chiều cao tối thiểu */
+  max-width: 100%; /* Không cho phép vượt quá kích thước màn hình */
+  max-height: 100%; /* Không cho phép vượt quá kích thước màn hình */
+  overflow: auto; /* Hiển thị thanh cuộn khi nội dung tràn */
+  resize: both; /* Cho phép kéo dãn cả chiều ngang và dọc */
   margin-bottom: 20px;
   padding: 15px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-right: 40px;
+  margin-right: 80px;
 }
+
 
 /* Khung tin nhắn của người dùng */
 .chat-message.user {
@@ -332,4 +342,7 @@ body {
 }
 .dark-mode .chat-history{
   background-color: 	rgb(56,56,56);
+}
+.dark-mode.title{
+  background-color: rgb(8,8,8);
 }

@@ -115,7 +115,9 @@ const ChatbotLayout: React.FC = () => {
 
             {/* Main Content */}
             <main className="main-content">
-                <h1 className="title">ChatGPT</h1>
+                <h1 className="title">
+                <img src="/Glücklich__1_-removebg-preview.png" className="" alt="Logo" />
+                </h1>
 
                 <div className="grid">
                     {/* Các sections khác vẫn giữ nguyên */}
