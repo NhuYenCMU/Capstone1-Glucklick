@@ -41,7 +41,7 @@ export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => 
             <nav className="nav">
 {/* <<<<<<< HEAD */}
                 <a className="item" href="/">Home</a>
-                <a className="item" href="#my-results">My Results</a>
+                <a className="item" href="/ResultsPage">My Results</a>
                 <a className="item" href="#dashboard">Dashboard</a>
                 <a className="item" href="/chatbot">ChatBot</a>
                 <a className="item" href="/Mycourses">My Courses</a>

@@ -19,6 +19,8 @@ import Mycourses from './features/Mycourses/Mycourses';
 import Testanswer1 from './features/Testanswer/Testanswer1';
 import Testanswer2 from './features/Testanswer/Testanswer2';
 import Testanswer3 from './features/Testanswer/Testanswer3';
+import NotFound from './components/BootcampCard/NotFound/NotFound';
+import ResultsPage from './components/BootcampCard/ResultsPage/ResultsPage';
 const App: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -72,6 +74,8 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
                 <Route path="/page1" element={<Testanswer1 />} />
                 <Route path="/page2" element={<Testanswer2 />} />
                 <Route path="/page3" element={<Testanswer3 />} />
+                <Route path="/404" element={<NotFound/>} />
+                <Route path="/ResultsPage" element={<ResultsPage/>} />
 
                 {/* Protected route example */}
                 <Route
