@@ -70,6 +70,7 @@
 
 .dropdown-menu {
     position: absolute;
+    display: block;
     top: calc(100% + 5px); /* Giảm khoảng cách giữa avatar và dropdown */
     left: -30px; /* Sát hơn với cạnh phải */
     background-color: white;
@@ -79,6 +80,7 @@
     min-width: 200px; /* Tăng chiều rộng menu */
     padding: 10px 0; /* Thêm khoảng cách bên trong */
     z-index: 1000;
+    visibility: visible;
   }
   
   .dropdown-item {
