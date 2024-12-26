@@ -8,12 +8,12 @@ const scrapeCourseDetails = async (url) => {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
 
     // Đợi một chút để chắc chắn nội dung được tải đầy đủ (có thể tùy chỉnh thời gian đợi)
-    await page.waitForSelector('h1.font-semibold');  // Đợi h1 có class font-semibold được hiển thị
+    await page.waitForSelector('h1.lead-title');  // Đợi h1 có class font-semibold được hiển thị
 
     // Lấy thông tin khóa học
     const courseDetails = await page.evaluate(() => {
       // Lấy tên khóa học
-      const name = document.querySelector('h1.font-semibold')?.innerText.trim() || 'No title';
+      const name = document.querySelector('h1.lead-title')?.innerText.trim() || 'No title';
       
       // Lấy mô tả khóa học
       const description = document.querySelector('.course-description')?.innerText.trim() || 'No description';

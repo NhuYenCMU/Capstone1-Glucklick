@@ -1,7 +1,7 @@
 import scrapeCourseDetails from './scraper.js';
 
 const main = async () => {
-  const url = 'https://codelearn.io/learning/python-cho-nguoi-moi-bat-dau'; // Đường dẫn đến khóa học
+  const url = 'https://www.udemy.com/course/aws-cloud-for-beginner-vietnamese/?couponCode=ST12MT122624'; // Đường dẫn đến khóa học
 
   try {
     const courseDetails = await scrapeCourseDetails(url);
@@ -12,3 +12,4 @@ const main = async () => {
 };
 
 main();
+
