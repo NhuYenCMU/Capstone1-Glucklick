@@ -10,7 +10,7 @@ const BootcampPrograms: React.FC = () => {
             name: 'BOOTCAMP FULLTIME',
             format: 'ONLINE, OFFLINE',
             alt: 'Person coding on multiple laptops',
-            link: 'https://codelearn.io/',
+            link: '/Recomandcourse',
           },
           {
             image: 'https://storage.googleapis.com/a1aa/image/V1rKKIz0yxolGpvwb423ANieby0bTZeB5fHUqAD7m086q60nA.jpg',

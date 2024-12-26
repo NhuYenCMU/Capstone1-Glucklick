@@ -59,6 +59,7 @@
   align-items: center;
   gap: 5px;
   position: relative; /* Ensure dropdown works with z-index */
+  z-index: 20; /* Set higher than other elements */
 }
 
 .user img {
@@ -69,35 +70,33 @@
 }
 
 .dropdown-menu {
-    position: absolute;
-    display: block;
-    top: calc(100% + 5px); /* Giảm khoảng cách giữa avatar và dropdown */
-    left: -30px; /* Sát hơn với cạnh phải */
-    background-color: white;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Tăng độ mờ của bóng */
-    border-radius: 12px; /* Bo góc mềm mại hơn */
-    overflow: hidden;
-    min-width: 200px; /* Tăng chiều rộng menu */
-    padding: 10px 0; /* Thêm khoảng cách bên trong */
-    z-index: 1000;
-    visibility: visible;
-  }
-  
-  .dropdown-item {
-    display: block;
-    padding: 15px 25px; /* Tăng padding để các mục lớn hơn */
-    color: #333;
-    text-decoration: none;
-    font-size: 16px; /* Tăng kích thước chữ */
-    font-family: Arial, Helvetica, sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #f2f2f2; /* Màu nền khi hover */
-    color: #118eb0; /* Màu chữ khi hover */
-  }
+  position: absolute;
+  top: calc(100% + 5px); /* Adjust the distance between the avatar and dropdown */
+  left: -20px; /* Adjust the position closer to the right edge */
+  background-color: white;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Increase shadow blur */
+  border-radius: 12px; /* Smooth border radius */
+  overflow: hidden;
+  min-width: 200px; /* Increase menu width */
+  padding: 10px 0; /* Add inner spacing */
+  z-index: 1000; /* Ensure it is above other elements */
+  display: block;
+}
 
+.dropdown-item {
+  display: block;
+  padding: 15px 25px; /* Increase padding for larger items */
+  color: #333;
+  text-decoration: none;
+  font-size: 16px; /* Increase font size */
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f2f2f2; /* Background color on hover */
+  color: #118eb0; /* Text color on hover */
+}
 .username {
   font-size: 15px;
   font-weight: bold;
@@ -138,11 +137,6 @@
     font-size: 13px; /* Smaller username font */
   }
 }
-.auth-buttons {
-  display: flex;
-  gap: 10px; /* Giảm khoảng cách giữa các nút */
-}
-
 .btn {
   outline: 0;
   display: inline-flex;
@@ -152,7 +146,7 @@
   min-width: 120px;               /* Điều chỉnh chiều rộng tối thiểu */
   height: 35px;                   /* Thêm chiều cao cho nút */
   border: 0;
-  border-radius: 4px;
+  border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
   box-sizing: border-box;
   padding: 0 20px;                /* Thêm padding cho nút, điều chỉnh khoảng cách trái và phải */
