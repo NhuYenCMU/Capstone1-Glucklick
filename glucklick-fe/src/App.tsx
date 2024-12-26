@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './components/common/Header';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';  // Ensure Bootstrap JS is imported
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 // Context
 import { AuthProvider, AuthContext } from './Context/Appcontext';
@@ -22,22 +23,45 @@ import Testanswer1 from './features/Testanswer/Testanswer1';
 import Testanswer2 from './features/Testanswer/Testanswer2';
 import Testanswer3 from './features/Testanswer/Testanswer3';
 import NotFound from './components/BootcampCard/NotFound/NotFound';
+import ResultsPage from './components/BootcampCard/ResultsPage/ResultsPage';
+import CozeChatBubble from './components/CozeBubble/cozeSDK';
+
 import ResultsPage from './components/ResultsPage/ResultsPage';
 import Recomandcoursein4 from './components/BootcampCard/Recomandcourse/Recomandcoursein4';
 import Uploadfile from './components/Uploadfile/Uploadfile';
 
 const App: React.FC = () => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const handleLogin = () => {
+        setIsAuthenticated(true); // Set authentication to true after login
+    };
+
+    const handleLogout = () => {
+        setIsAuthenticated(false); // Set authentication to false on logout
+    };
+
+
+const App: React.FC = () => {
     return (
         <Router>
+            <InnerApp isAuthenticated={isAuthenticated} onLogin={handleLogin} onLogout={handleLogout} />
+            {/* Thêm bong bóng chat của Coze SDK */}
+            <CozeChatBubble />
             <AuthProvider>
                 <InnerApp />
             </AuthProvider>
+
         </Router>
     );
 };
 
-// Separate component to use Router context
-const InnerApp: React.FC = () => {
+
+const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogout: () => void }> = ({
+    isAuthenticated,
+    onLogin,
+    onLogout,
+}) => {
     const location = useLocation();
     const authContext = React.useContext(AuthContext);
 
@@ -78,6 +102,7 @@ const InnerApp: React.FC = () => {
                 <Route path="/ResultsPage" element={<ResultsPage />} />
                 <Route path="/Recomandcourse" element={<Recomandcoursein4 />} />
                 <Route path="/Uploadfile" element={<Uploadfile />} />
+
                 {/* Protected route example */}
                 <Route
                     path="/protected"
