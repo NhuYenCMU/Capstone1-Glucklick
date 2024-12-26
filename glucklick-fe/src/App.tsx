@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './components/common/Header';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';  // Đảm bảo Bootstrap JS đã được import
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 // Pages
@@ -21,6 +21,8 @@ import Testanswer2 from './features/Testanswer/Testanswer2';
 import Testanswer3 from './features/Testanswer/Testanswer3';
 import NotFound from './components/BootcampCard/NotFound/NotFound';
 import ResultsPage from './components/BootcampCard/ResultsPage/ResultsPage';
+import CozeChatBubble from './components/CozeBubble/cozeSDK';
+
 const App: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -35,11 +37,12 @@ const App: React.FC = () => {
     return (
         <Router>
             <InnerApp isAuthenticated={isAuthenticated} onLogin={handleLogin} onLogout={handleLogout} />
+            {/* Thêm bong bóng chat của Coze SDK */}
+            <CozeChatBubble />
         </Router>
     );
 };
 
-// Separate component to use Router context
 const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogout: () => void }> = ({
     isAuthenticated,
     onLogin,
@@ -74,8 +77,8 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
                 <Route path="/page1" element={<Testanswer1 />} />
                 <Route path="/page2" element={<Testanswer2 />} />
                 <Route path="/page3" element={<Testanswer3 />} />
-                <Route path="/404" element={<NotFound/>} />
-                <Route path="/ResultsPage" element={<ResultsPage/>} />
+                <Route path="/404" element={<NotFound />} />
+                <Route path="/ResultsPage" element={<ResultsPage />} />
 
                 {/* Protected route example */}
                 <Route

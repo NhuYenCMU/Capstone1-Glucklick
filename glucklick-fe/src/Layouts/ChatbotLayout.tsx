@@ -21,23 +21,49 @@ const ChatbotLayout: React.FC = () => {
     };
 
     // Hàm gửi câu hỏi và nhận câu trả lời
-    const handleSendMessage = () => {
+    const handleSendMessage = async () => {
         if (inputValue.trim()) {
             // Thêm câu hỏi của người dùng vào danh sách các cuộc trò chuyện
-            setMessages(prevMessages => [
+            setNavItems(prevNavItems => [...prevNavItems, { userMessage: inputValue }]);
+
+            // Gửi yêu cầu tới webhook Zapier
+            const fetchChatbotResponse = async (message: string): Promise<string> => {
+                try {
+                    const response = await fetch('https://hooks.zapier.com/hooks/catch/21075316/28syd6r/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message }), // Gửi câu hỏi người dùng
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data.reply || 'No response from chatbot'; // Nếu webhook trả về phản hồi
+                } catch (error) {
+                    console.error('Error fetching chatbot response:', error);
+                    return 'Error fetching response from chatbot.';
+                }
+            };
+
+
+            // Simulate chatbot response
+            const chatbotResponse = await fetchChatbotResponse(inputValue);
+
+            // Cập nhật danh sách tin nhắn
+            setMessages((prevMessages) => [
                 ...prevMessages,
-                { userMessage: inputValue, botReply: "This is a response from ChatGPT." } // Giả lập câu trả lời từ ChatGPT
+                { userMessage: inputValue, botReply: '' },
+                { userMessage: '', botReply: chatbotResponse },
             ]);
 
-            // Thêm câu hỏi vào phần nav1
-            setNavItems(prevNavItems => [
-                ...prevNavItems,
-                { userMessage: inputValue }
-            ]);
-
-            setInputValue(""); // Xóa ô nhập liệu sau khi gửi
+            setInputValue(''); // Xóa ô nhập liệu sau khi gửi
         }
     };
+
 
     // Hàm xử lý khi nhấn Enter
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -54,8 +80,9 @@ const ChatbotLayout: React.FC = () => {
     }, [messages]);
 
     // Hàm xử lý khi click vào nút Clear conversations
-    const handleClearConversations = () => {
-        setMessages([]); // Xóa các tin nhắn nhưng giữ lại navItems
+    const handleNewChatClick = () => {
+        setMessages([]);
+        setNavItems([]);
     };
 
     // Hàm xử lý chuyển đổi chế độ Dark Mode
@@ -67,7 +94,7 @@ const ChatbotLayout: React.FC = () => {
         <div className={`app ${isDarkMode ? 'dark-mode' : ''}`}> {/* Thêm class dark-mode nếu ở chế độ tối */}
             {/* Sidebar */}
             <aside className="sidebar">
-                <button className="sidebar-button">
+                <button className="sidebar-button" onClick={handleNewChatClick}>
                     <FontAwesomeIcon icon={faPlus} className="icon" />
                     <span>New chat</span>
                 </button>
@@ -89,10 +116,10 @@ const ChatbotLayout: React.FC = () => {
 
                 {/* Footer Sidebar */}
                 <div className="sidebar-footer">
-                    <button className="sidebar-button" onClick={handleClearConversations}>
+                    {/* <button className="sidebar-button" onClick={handleClearConversations}>
                         <FontAwesomeIcon icon={faTrashAlt} className="icon" />
                         <span>Clear conversations</span>
-                    </button>
+                    </button> */}
                     <button className="sidebar-button">
                         <FontAwesomeIcon icon={faStar} className="icon" />
                         <span>Upgrade to Plus</span>
@@ -116,7 +143,7 @@ const ChatbotLayout: React.FC = () => {
             {/* Main Content */}
             <main className="main-content">
                 <h1 className="title">
-                <img src="/Glücklich__1_-removebg-preview.png" className="" alt="Logo" />
+                    <img src="/Glücklich__1_-removebg-preview.png" className="" alt="Logo" />
                 </h1>
 
                 <div className="grid">
@@ -177,5 +204,7 @@ const ChatbotLayout: React.FC = () => {
         </div>
     );
 };
+
+
 
 export default ChatbotLayout;

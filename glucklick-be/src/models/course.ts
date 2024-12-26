@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose'
-import { getCourses } from '../controllers/courseController';
+import { getCourses } from '../controllers/courseController'
 
 export interface ICourse extends Document {
   courseName: string

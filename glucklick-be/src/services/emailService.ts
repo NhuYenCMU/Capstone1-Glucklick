@@ -21,4 +21,3 @@ export const sendEmail = async (to: string, subject: string, text: string, html?
     throw new Error('Không thể gửi email')
   }
 }
-
