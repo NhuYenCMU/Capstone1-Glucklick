@@ -35,12 +35,16 @@ export const register = async (req: Request, res: Response, next: NextFunction):
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
 
-    // Create a new user
+    // Construct avatar URL based on username
+    const avatarUrl = `https://avatar.iran.liara.run/username?username=${encodeURIComponent(username)}`
+
+    // Create a new user with the avatar URL
     const newUser: IUser = new User({
       username,
       email,
       password: hashedPassword,
-      role: 'user' // Default role; modify as needed
+      role: 'user', // Default role; modify as needed
+      avatar: avatarUrl // Add avatar field
     })
 
     await newUser.save()
@@ -57,7 +61,8 @@ export const register = async (req: Request, res: Response, next: NextFunction):
         id: newUser._id,
         username: newUser.username,
         email: newUser.email,
-        role: newUser.role
+        role: newUser.role,
+        avatar: newUser.profilePic // Include avatar in the response
       }
     })
   } catch (error) {
@@ -95,16 +100,25 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
 export const editUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { userId } = req.params // Lấy userId từ tham số URL
-    const { username, email, password } = req.body // Các trường cần cập nhật
+    const { username, email, bio, profilePic } = req.body // Các trường cần cập nhật
 
-    // Xác thực các trường cần thiết ở đây nếu cần thiết
+    // Kiểm tra xem người dùng có tồn tại hay không
+    const user = await User.findById(userId)
+    if (!user) {
+      res.status(404).json({ message: 'Không tìm thấy người dùng' })
+      return
+    }
+
+    // Tạo đối tượng chứa các trường cần cập nhật
+    const updateFields: Partial<IUser> = {}
+
+    if (username) updateFields.username = username
+    if (email) updateFields.email = email
+    if (bio) updateFields.bio = bio
+    if (profilePic) updateFields.profilePic = profilePic // Cập nhật ảnh đại diện
 
     // Cập nhật người dùng trong cơ sở dữ liệu
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { username, email, password },
-      { new: true } // Trả về người dùng sau khi đã cập nhật
-    )
+    const updatedUser = await User.findByIdAndUpdate(userId, updateFields, { new: true })
 
     // Kiểm tra nếu không tìm thấy người dùng
     if (!updatedUser) {
@@ -123,7 +137,6 @@ export const editUser = async (req: Request, res: Response): Promise<void> => {
 export const forgotPassword = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { email } = req.body
-
     // Kiểm tra xem người dùng có tồn tại hay không
     const user = await User.findOne({ email })
     if (!user) {
