@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './components/common/Header';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+
+// Context
+import { AuthProvider, AuthContext } from './Context/Appcontext';
 
 // Pages
 import RegisterPage from './Login/pages/RegisterPage';
@@ -23,6 +26,10 @@ import NotFound from './components/BootcampCard/NotFound/NotFound';
 import ResultsPage from './components/BootcampCard/ResultsPage/ResultsPage';
 import CozeChatBubble from './components/CozeBubble/cozeSDK';
 
+import ResultsPage from './components/ResultsPage/ResultsPage';
+import Recomandcoursein4 from './components/BootcampCard/Recomandcourse/Recomandcoursein4';
+import Uploadfile from './components/Uploadfile/Uploadfile';
+
 const App: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -34,14 +41,21 @@ const App: React.FC = () => {
         setIsAuthenticated(false); // Set authentication to false on logout
     };
 
+
+const App: React.FC = () => {
     return (
         <Router>
             <InnerApp isAuthenticated={isAuthenticated} onLogin={handleLogin} onLogout={handleLogout} />
             {/* Thêm bong bóng chat của Coze SDK */}
             <CozeChatBubble />
+            <AuthProvider>
+                <InnerApp />
+            </AuthProvider>
+
         </Router>
     );
 };
+
 
 const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogout: () => void }> = ({
     isAuthenticated,
@@ -49,6 +63,13 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
     onLogout,
 }) => {
     const location = useLocation();
+    const authContext = React.useContext(AuthContext);
+
+    if (!authContext) {
+        throw new Error('AuthContext must be used within an AuthProvider');
+    }
+
+    const { login } = authContext;
 
     // Array of paths where the Header should be hidden
     const authRoutes = ['/login', '/register', '/forgot-password', '/change-password'];
@@ -56,7 +77,7 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
 
     return (
         <>
-            {showHeader && <Header isAuthenticated={isAuthenticated} onLogout={onLogout} />}
+            {showHeader && <Header />}
             <Routes>
                 {/* Public homepage */}
                 <Route
@@ -69,7 +90,7 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
                 />
                 {/* Public routes */}
                 <Route path="/register" element={<AuthLayout><RegisterPage /></AuthLayout>} />
-                <Route path="/login" element={<AuthLayout><LoginPage onLogin={onLogin} /></AuthLayout>} />
+                <Route path="/login" element={<AuthLayout><LoginPage onLogin={login} /></AuthLayout>} />
                 <Route path="/forgot-password" element={<AuthLayout><ForgotPasswordPage /></AuthLayout>} />
                 <Route path="/change-password" element={<AuthLayout><ChangePasswordPage /></AuthLayout>} />
                 <Route path="/chatbot" element={<ChatBotPage />} />
@@ -79,16 +100,16 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
                 <Route path="/page3" element={<Testanswer3 />} />
                 <Route path="/404" element={<NotFound />} />
                 <Route path="/ResultsPage" element={<ResultsPage />} />
+                <Route path="/Recomandcourse" element={<Recomandcoursein4 />} />
+                <Route path="/Uploadfile" element={<Uploadfile />} />
 
                 {/* Protected route example */}
                 <Route
                     path="/protected"
                     element={
-                        isAuthenticated ? (
+                        <ProtectedRoute>
                             <div>Protected Content</div>
-                        ) : (
-                            <Navigate to="/login" />
-                        )
+                        </ProtectedRoute>
                     }
                 />
                 {/* Catch-all route */}
@@ -96,6 +117,23 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
             </Routes>
         </>
     );
+};
+
+// ProtectedRoute component to handle protected routes
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const authContext = React.useContext(AuthContext);
+
+    if (!authContext) {
+        throw new Error('AuthContext must be used within an AuthProvider');
+    }
+
+    const { auth } = authContext;
+
+    if (!auth) {
+        return <Navigate to="/login" />;
+    }
+
+    return <>{children}</>;
 };
 
 export default App;

@@ -5,8 +5,9 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify'; // Import Toastify
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS Toastify
 import './css/Toast.css';
+
 interface LoginPageProps {
-    onLogin: () => void;
+    onLogin: (token: string) => void;
 }
 
 const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
@@ -16,34 +17,34 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     const navigate = useNavigate();
 
     const handleLogin = async () => {
-      if (!username || !password) {
-        const message = "Please enter both username and password";
-        toast.error(message);
-        return;
-    }
-
-    try {
-        const response = await axios.post('http://localhost:8080/api/auth/login', {
-            username,
-            password
-        });
-
-        if (response.data.token) {
-            // Lưu token vào localStorage hoặc sessionStorage
-            if (rememberMe) {
-                localStorage.setItem('token', response.data.token);
-            } else {
-                sessionStorage.setItem('token', response.data.token);
-            }
-            toast.success(response.data.message, { theme: "colored" });
-            // Đặt callback khi đăng nhập thành công
-            onLogin();
-            navigate('/');
+        if (!username || !password) {
+            const message = "Please enter both username and password";
+            toast.error(message);
+            return;
         }
-    } catch (error: any) {
-      const message = error.response?.data?.message;
-      toast.error(message, { theme: "colored" });
-    }
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/auth/login', {
+                username,
+                password
+            });
+
+            if (response.data.token) {
+                // Save token to localStorage or sessionStorage
+                if (rememberMe) {
+                    localStorage.setItem('token', response.data.token);
+                } else {
+                    sessionStorage.setItem('token', response.data.token);
+                }
+                toast.success(response.data.message, { theme: "colored" });
+                // Call onLogin callback on successful login
+                onLogin(response.data.token);
+                navigate('/');
+            }
+        } catch (error: any) {
+            const message = error.response?.data?.message;
+            toast.error(message, { theme: "colored" });
+        }
     };
 
     return (
@@ -51,7 +52,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             <h2>Welcome to Glücklich..!</h2>
             <p>To ensure the security of your account, please login.</p>
             
-            {/* {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} */}
             <FormGroup>
                 <label>User name</label>
                 <Input
@@ -82,16 +82,18 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                 <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
             </FormGroup>
             <Button className="btn" color="primary" block onClick={handleLogin}>Login</Button>
-            <ToastContainer position="top-right"
-              autoClose={3000} // Tự động đóng sau 3 giây
-              hideProgressBar={false} // Hiện thanh tiến trình
-              newestOnTop={true} // Sắp xếp thông báo mới lên trên
-              closeOnClick // Đóng khi nhấp chuột
-              rtl={false} // Hỗ trợ hướng từ trái sang phải
-              pauseOnFocusLoss // Dừng khi chuyển cửa sổ
-              draggable // Cho phép kéo
-              pauseOnHover // Dừng khi rê chuột qua
-              theme="colored"  />
+            <ToastContainer 
+                position="top-right"
+                autoClose={3000} // Auto close after 3 seconds
+                hideProgressBar={false} // Show progress bar
+                newestOnTop={true} // Show newest notifications on top
+                closeOnClick // Close on click
+                rtl={false} // Support left-to-right
+                pauseOnFocusLoss // Pause on focus loss
+                draggable // Allow dragging
+                pauseOnHover // Pause on hover
+                theme="colored"  
+            />
         </Container>
     );
 };

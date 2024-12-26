@@ -71,8 +71,10 @@
 
 /* Nội dung chính (main-content) */
 .main-content {
-  flex: 1; /* Đảm bảo không bị che khuất bởi sidebar */
-  padding: 20px; /* Đảm bảo nội dung không bị tràn ra ngoài */
+  flex: 1;
+  margin-left: 80px; /* Đảm bảo không bị che khuất bởi sidebar */
+  padding: 20px;
+  overflow: auto; /* Đảm bảo nội dung không bị tràn ra ngoài */
 }
 
 /* Tiêu đề chính */
