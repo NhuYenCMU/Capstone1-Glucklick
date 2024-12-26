@@ -82,7 +82,7 @@ body {
 /* Nội dung chính (main-content) */
 .main-content {
   flex: 1;
-  margin-left: 200px; /* Đảm bảo không bị che khuất bởi sidebar */
+  margin-left: 80px; /* Đảm bảo không bị che khuất bởi sidebar */
   padding: 20px;
   overflow: auto; /* Đảm bảo nội dung không bị tràn ra ngoài */
 }

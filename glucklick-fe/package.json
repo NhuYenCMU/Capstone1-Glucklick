@@ -23,7 +23,8 @@
     "chart.js": "^4.4.7",
     "cheerio": "^1.0.0",
     "glucklick-fe": "file:",
-    "puppeteer": "^23.11.1",
+    "js-cookie": "^3.0.5",
+    "puppeteer": "^23.11.1,
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.8.1",
     "@types/react": "^18.3.13",
     "@types/react-dom": "^18.3.1",
