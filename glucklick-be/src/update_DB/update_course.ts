@@ -10,39 +10,44 @@ const addSampleCourses = async () => {
     // Thêm các khóa học mẫu vào MongoDB
     const courses = await Course.insertMany([
       {
-        courseName: 'JavaScript cơ bản',
-        description: 'Khóa học giới thiệu về JavaScript, từ cơ bản đến nâng cao.',
+        courseName: 'Python cho người mới bắt đầu',
+        description: 'Khóa học cung cấp trọn bộ kiến thức cơ bản của lập trình Python, học viên có thể tạo ra một ứng dụng hoàn chỉnh với Python sau khi hoàn thành khóa học.',
         difficultyLevel: 'Beginner',
-        price: 120, // Giá tiền mẫu
-        rating: 4.5, // Đánh giá mẫu
+        price: 499, // Giá tiền mẫu
+        rating: 4.9, // Đánh giá mẫu
+        link: 'https://codelearn.io/learning/python-cho-nguoi-moi-bat-dau'
       },
       {
-        courseName: 'Lập trình Web với React',
-        description: 'Khóa học về lập trình web sử dụng ReactJS.',
+        courseName: 'Giải thuật cho Python',
+        description: 'Khóa học này sẽ cung cấp kiến thức về thiết kế, phân tích và triển khai thuật toán bằng Python. Học viên sẽ trang bị các kỹ thuật thuật toán cơ bản, phân tích độ phức tạp, và giải quyết các vấn đề tính toán.',
         difficultyLevel: 'Intermediate',
-        price: 150,
-        rating: 4.7,
+        price: 699,
+        rating: 4.9,
+        link: 'https://codelearn.io/learning/giai-thuat-cho-python'
       },
       {
-        courseName: 'Node.js và ExpressJS',
-        description: 'Khóa học về xây dựng backend với Node.js và ExpressJS.',
-        difficultyLevel: 'Advanced',
-        price: 200,
-        rating: 4.8,
-      },
-      {
-        courseName: 'Giới thiệu về AI và Machine Learning',
-        description: 'Khóa học giới thiệu cơ bản về AI và học máy.',
+        courseName: 'Lập trình C++ cơ bản',
+        description: 'Khóa học cung cấp nền tảng vững chắc về C++ cho người mới bắt đầu, giúp họ phát triển kỹ năng lập trình cơ bản và áp dụng vào các dự án thực tế.',
         difficultyLevel: 'Beginner',
+        price: 499,
+        rating: 4.8,
+        link: 'https://codelearn.io/learning/lap-trinh-cpp-co-ban'
+      },
+      {
+        courseName: 'Lập trình C++ nâng cao',
+        description: 'Khóa học C++ nâng cao được thiết kế dành cho những lập trình viên đã có kiến thức cơ bản về C++ và mong muốn nâng cao kỹ năng lập trình của mình.',
+        difficultyLevel: 'Advanced',
         price: 180,
         rating: 4.6,
+        link: 'https://codelearn.io/learning/lap-trinh-cpp-nang-cao'
       },
       {
-        courseName: 'Dữ liệu lớn (Big Data)',
-        description: 'Khóa học tìm hiểu về Big Data và công cụ xử lý dữ liệu lớn.',
-        difficultyLevel: 'Advanced',
-        price: 250,
+        courseName: 'Lập trình hướng đối tượng trong C++',
+        description: 'Khóa học giúp các lập trình viên học được kỹ thuật lập trình mà tất cả logic, yêu cầu thực tế đều được xây dựng xoay quanh đối tượng',
+        difficultyLevel: 'Beginner',
+        price: 0,
         rating: 4.9,
+        link: 'https://codelearn.io/learning/lap-trinh-huong-doi-tuong-trong-cpp'
       }
     ])
 
