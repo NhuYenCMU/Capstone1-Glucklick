@@ -7,5 +7,5 @@ router.post('/register', register)
 router.post('/login', login)
 router.post('/forgot-password', forgotPassword)
 router.post('/change-password', changePassword)
-router.put('/edit/:userId', editUser)
+router.put('/editUser/:userId', editUser)
 export default router

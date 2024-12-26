@@ -53,7 +53,9 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
 
   return (
     <>
-      {showHeader && <Header isAuthenticated={isAuthenticated} onLogout={onLogout} />}
+      {showHeader && (
+        <Header isAuthenticated={isAuthenticated} onLogout={onLogout} username='User' avatar='default-avatar.jpg' />
+      )}
       <Routes>
         {/* Public homepage */}
         <Route
@@ -104,7 +106,7 @@ const InnerApp: React.FC<{ isAuthenticated: boolean; onLogin: () => void; onLogo
         <Route path='/page3' element={<Testanswer3 />} />
         <Route path='/404' element={<NotFound />} />
         <Route path='/ResultsPage' element={<ResultsPage />} />
-        <Route path='/EditProfile' element={<EditProfile />} />
+        <Route path='/edit-profile' element={<EditProfile />} />
 
         {/* Protected route example */}
         <Route path='/protected' element={isAuthenticated ? <div>Protected Content</div> : <Navigate to='/login' />} />

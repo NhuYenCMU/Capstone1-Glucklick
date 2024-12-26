@@ -9,6 +9,7 @@ import jwt from 'jsonwebtoken'
 import { verifyToken } from '../utils/jwt' // Hàm xác thực token
 import { sendEmail } from '../services/emailService'
 import { validatePassword } from '../utils/validatePassword'
+import cors from 'cors'
 
 export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -99,38 +100,47 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
 // Hàm editUser để cập nhật thông tin người dùng
 export const editUser = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { userId } = req.params // Lấy userId từ tham số URL
-    const { username, email, bio, profilePic } = req.body // Các trường cần cập nhật
+    const { userId } = req.params // Get userId from URL params
+    const { username, email, bio, profilePic } = req.body // Fields to update
 
-    // Kiểm tra xem người dùng có tồn tại hay không
+    // Check if the user exists
     const user = await User.findById(userId)
     if (!user) {
-      res.status(404).json({ message: 'Không tìm thấy người dùng' })
+      res.status(404).json({ message: 'User not found' })
       return
     }
 
-    // Tạo đối tượng chứa các trường cần cập nhật
+    // Create an object to hold the fields to update
     const updateFields: Partial<IUser> = {}
 
-    if (username) updateFields.username = username
-    if (email) updateFields.email = email
-    if (bio) updateFields.bio = bio
-    if (profilePic) updateFields.profilePic = profilePic // Cập nhật ảnh đại diện
+    // Update the fields if they are provided and differ from the existing data
+    if (username && username !== user.username) updateFields.username = username
+    if (email && email !== user.email) updateFields.email = email
+    if (bio && bio !== user.bio) updateFields.bio = bio
+    if (profilePic && profilePic !== user.profilePic) updateFields.profilePic = profilePic
 
-    // Cập nhật người dùng trong cơ sở dữ liệu
+    // Update the user in the database
     const updatedUser = await User.findByIdAndUpdate(userId, updateFields, { new: true })
 
-    // Kiểm tra nếu không tìm thấy người dùng
+    // If the user couldn't be updated, return an error
     if (!updatedUser) {
-      res.status(404).json({ message: 'Không tìm thấy người dùng' })
+      res.status(404).json({ message: 'User not found after update' })
       return
     }
 
-    // Trả về phản hồi thành công với thông tin người dùng đã cập nhật
-    res.json({ message: 'Cập nhật người dùng thành công', user: updatedUser })
+    // Return a successful response with updated user data
+    res.json({
+      message: 'User updated successfully',
+      user: {
+        username: updatedUser.username,
+        email: updatedUser.email,
+        bio: updatedUser.bio || '', // Ensure bio is returned as an empty string if null
+        profilePic: updatedUser.profilePic || '' // Ensure profilePic is returned with a default if empty
+      }
+    })
   } catch (error) {
-    // Xử lý lỗi và trả về phản hồi lỗi
-    res.status(500).json({ message: 'Lỗi khi cập nhật người dùng', error: (error as Error).message })
+    // Handle any errors that occurred
+    res.status(500).json({ message: 'Error updating user', error: (error as Error).message })
   }
 }
 // Chức năng quên mật khẩu
