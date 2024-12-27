@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
-import connectDB from '../database';
-import User from '../models/user';
+import mongoose from 'mongoose'
+import connectDB from '../database'
+import User from '../models/user'
 
 const addSampleUsers = async () => {
   try {
-    await connectDB();
+    await connectDB()
 
     const newUsers = await User.insertMany([
       {
@@ -12,24 +12,24 @@ const addSampleUsers = async () => {
         email: 'newuser1@example.com',
         password: 'password123',
         role: 'member',
-        bio: 'This is the bio for new_user_1',
+        bio: 'This is the bio for new_user_1'
       },
       {
         username: 'new_user_2',
         email: 'newuser2@example.com',
         password: 'password456',
         role: 'admin',
-        bio: 'This is the bio for new_user_2',
-      },
-    ]);
+        bio: 'This is the bio for new_user_2'
+      }
+    ])
 
-    console.log('Thêm dữ liệu mẫu thành công:', newUsers);
+    console.log('Thêm dữ liệu mẫu thành công:', newUsers)
 
-    process.exit();
+    process.exit()
   } catch (error) {
-    console.error('Lỗi khi thêm dữ liệu mẫu:', error);
-    process.exit(1);
+    console.error('Lỗi khi thêm dữ liệu mẫu:', error)
+    process.exit(1)
   }
-};
+}
 
-addSampleUsers();
+addSampleUsers()
