@@ -13,12 +13,12 @@ body, html {
   .app-container {
     display: flex;
     width: 100%;
-    max-width: 1400px; /* Increased maximum width */
+    max-width: 1200px; /* Increased maximum width */
     background-color: #ffffff;
     border-radius: 12px; /* Slightly more rounded corners */
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15); /* Larger shadow for more depth */
     overflow: hidden;
-    margin: 120px 340px; /* Center the container */
+    margin: 30px 250px; /* Center the container */
   }
   
   /* Side image container */
@@ -130,8 +130,8 @@ body, html {
   @media (max-width: 768px) {
     .app-container {
       flex-direction: column;
-      width: 90%;
-      max-width: 100%; /* Full-width on mobile */
+      width: 90vh;
+      max-width: 100vh; /* Full-width on mobile */
       margin: 0 20px;
     }
   
