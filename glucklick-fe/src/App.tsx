@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/common/Header';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';  // Ensure Bootstrap JS is imported
 
+
 // Context
 import { AuthProvider, AuthContext } from './Context/Appcontext';
 
@@ -22,13 +23,16 @@ import Testanswer1 from './features/Testanswer/Testanswer1';
 import Testanswer2 from './features/Testanswer/Testanswer2';
 import Testanswer3 from './features/Testanswer/Testanswer3';
 import NotFound from './components/BootcampCard/NotFound/NotFound';
-import ResultsPage from './components/ResultsPage/ResultsPage';
 import Recomandcoursein4 from './components/BootcampCard/Recomandcourse/Recomandcoursein4';
 import Uploadfile from './components/Uploadfile/Uploadfile';
+import ResultsPage from './components/BootcampCard/ResultsPage/ResultsPage';
+import CozeChatBubble from './components/CozeBubble/cozeSDK';
 
 const App: React.FC = () => {
     return (
         <Router>
+            {/* Thêm bong bóng chat của Coze SDK */}
+            <CozeChatBubble />
             <AuthProvider>
                 <InnerApp />
             </AuthProvider>
@@ -36,7 +40,6 @@ const App: React.FC = () => {
     );
 };
 
-// Separate component to use Router context
 const InnerApp: React.FC = () => {
     const location = useLocation();
     const authContext = React.useContext(AuthContext);
@@ -110,5 +113,3 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
     return <>{children}</>;
 };
-
-export default App;
