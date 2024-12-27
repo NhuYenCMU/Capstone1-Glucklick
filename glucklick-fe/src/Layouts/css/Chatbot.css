@@ -1,13 +1,3 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0; /* Màu nền sáng */
-  color: #333;
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Đảm bảo không có thanh cuộn ngoài ý muốn */
-}
-
 /* Cấu trúc chính của ứng dụng */
 .app {
   display: flex;
@@ -81,17 +71,15 @@ body {
 
 /* Nội dung chính (main-content) */
 .main-content {
-  flex: 1;
-  margin-left: 200px; /* Đảm bảo không bị che khuất bởi sidebar */
-  padding: 20px;
-  overflow: auto; /* Đảm bảo nội dung không bị tràn ra ngoài */
+  flex: 1; /* Đảm bảo không bị che khuất bởi sidebar */
+  padding: 10px; /* Đảm bảo nội dung không bị tràn ra ngoài */
 }
 
 /* Tiêu đề chính */
 .title {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   margin-right: 140px;
   justify-content: center;
   align-items: center;
@@ -124,7 +112,7 @@ body {
 }
 
 .messageBox {
-  max-width: 900px;  /* Tăng chiều rộng tối đa */
+  max-width: 800px;  /* Tăng chiều rộng tối đa */
   width: auto;       /* Chiều rộng tự động thay đổi theo nội dung */
   height: auto;      /* Chiều cao tự động thay đổi theo nội dung */
   min-height: 50px;  /* Đảm bảo chiều cao tối thiểu */
@@ -143,7 +131,6 @@ body {
   left: 58%;
   transform: translateX(-50%); /* Căn giữa ngang */
 }
-
 .messageBox:focus-within {
   border: 1px solid rgb(110, 110, 110);
 }
@@ -272,7 +259,53 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-right: 80px;
 }
+/* Chat container */
+.chat-container {
+  width: 300px; /* Adjust the width to make the chat window smaller */
+  height: 400px; /* Adjust the height to make the chat window smaller */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
+/* Chat header */
+.chat-header {
+  background-color: #2d3748;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Chat messages */
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+/* Chat input */
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.chat-input button {
+  padding: 10px;
+  background-color: #2d3748;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
 
 /* Khung tin nhắn của người dùng */
 .chat-message.user {
