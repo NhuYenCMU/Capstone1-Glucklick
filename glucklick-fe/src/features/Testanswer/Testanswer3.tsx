@@ -19,9 +19,9 @@ export const Testanswer3: React.FC = () => {
         <div className="left-container">
           <h3>What do you want to achieve?</h3>
           <div className="tabs">
-            <a href="/" className="tab-button">Web development</a>
-            <a href="/" className="tab-button">Data science</a>
-            <a href="/" className="tab-button">Computer science</a>
+            <a href="/ResultsPage" className="tab-button">Web development</a>
+            <a href="/ResultsPage" className="tab-button">Data science</a>
+            <a href="/ResultsPage" className="tab-button">Computer science</a>
           </div>
           {/* Skip Personalization Link */}
           <a href="/" className="Skip">Skip personalization</a> 
