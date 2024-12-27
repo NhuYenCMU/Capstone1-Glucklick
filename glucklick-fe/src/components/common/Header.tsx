@@ -19,6 +19,7 @@ const Header: React.FC = () => {
     };
 
     const handleLogout = async () => {
+        console.log('User logged out');
         await logout();
     };
 

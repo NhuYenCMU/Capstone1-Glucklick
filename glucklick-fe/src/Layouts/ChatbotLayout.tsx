@@ -85,7 +85,7 @@ const ChatbotLayout: React.FC = () => {
             </aside>
 
             <main className="main-content">
-                <h1 className="title">Zapier Chatbot</h1>
+                <h1 className="title"><img src="/Glücklich__1_-removebg-preview.png" alt="Logo" /></h1>
                 <zapier-interfaces-chatbot-embed
                     is-popup="false"
                     chatbot-id="cm4w5p3iz0042x3v9qpr2j3x3"
