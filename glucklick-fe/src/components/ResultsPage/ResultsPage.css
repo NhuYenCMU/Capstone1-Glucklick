@@ -64,6 +64,8 @@ nav a:hover {
   height: auto;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  margin-right: 40px;
 }
 .resultImageStyle {
   width: 200px;
@@ -149,7 +151,7 @@ nav a:hover {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  width: 300px;
   margin: 10px;
   text-align: left;
   padding: 20px;

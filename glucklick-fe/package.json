@@ -20,7 +20,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@types/styled-components": "^5.1.34",
     "axios": "^1.7.9",
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.0.2",
     "chart.js": "^4.4.7",
     "cheerio": "^1.0.0",
     "glucklick-fe": "file:",

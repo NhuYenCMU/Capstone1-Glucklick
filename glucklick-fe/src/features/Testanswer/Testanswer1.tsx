@@ -22,7 +22,7 @@ export const Testanswer1: React.FC = () => {
             <a href="/page2" className="tab-button">Web development</a>
             <a href="/page2" className="tab-button">Data science</a>
             <a href="/page2" className="tab-button">Computer science</a>
-            <a href="/page2n" className="tab-button">Web design</a>
+            <a href="/page2" className="tab-button">Web design</a>
             <a href="/page2" className="tab-button">Artificial intelligence</a>
             <a href="/page2" className="tab-button">Machine learning</a>
             <a href="/page2" className="tab-button">Game development</a>
