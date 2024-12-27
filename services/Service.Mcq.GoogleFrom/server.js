@@ -22,15 +22,16 @@ app.post('/send-to-apps-script', async (req, res) => {
   try {
     const jsonData = req.body;
     console.log(jsonData);
-    const appsScriptUrl = process.env.APP_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbzZx3D0_CU0BA7MN4zukw3aGp9g976GdPGyjSAzxL59eODEGuKZtAMn7_Evqfu-a2lQQw/exec';
+    const appsScriptUrl = process.env.APP_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwsij4Zo7io7HKJN4yORg7XYtKSYCaDAUWEuLgGlWyprgfu1BbDSVLrSjwA7tlyf8J1vg/exec';
 
     const response = await axios.post(appsScriptUrl, jsonData, {
       headers: {
         'Content-Type': 'application/json'
       }
     });
-
-    res.status(response.status).json({ link: response.formUrl })
+    // console.log(response.data);
+    // console.log(response)
+    return res.status(response.status).json({ link: response.data.formUrl })
   } catch (error) {
     console.error('Error sending data to Apps Script:', error.message);
 
