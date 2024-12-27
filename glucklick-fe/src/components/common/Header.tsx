@@ -26,6 +26,13 @@ const Header: React.FC = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
 
+    const handleUploadFileClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        if (!auth) {
+            e.preventDefault();
+            navigate('/login');
+        }
+    };
+
     return (
         <header className="header">
             <div className="logo-header" onClick={handleLogoClick}>
@@ -33,8 +40,8 @@ const Header: React.FC = () => {
             </div>
             <nav className="nav">
                 <Link className="item" to="/">Home</Link>
-                <Link className="item" to="/ResultsPage">My Results</Link>
-                <Link className="item" to="/Uploadfile">Uploadfile</Link>
+                <Link className="item" to="/ResultsPage" onClick={handleUploadFileClick}>My Results</Link>
+                <Link className="item" to="/Uploadfile" onClick={handleUploadFileClick}>Uploadfile</Link>
                 <Link className="item" to="/chatbot">ChatBot</Link>
                 <Link className="item" to="/Mycourses">My Courses</Link>
             </nav>

@@ -4,7 +4,6 @@ import './App.css';
 import Header from './components/common/Header';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';  // Ensure Bootstrap JS is imported
 
-
 // Context
 import { AuthProvider, AuthContext } from './Context/Appcontext';
 
@@ -28,14 +27,13 @@ import NotFound from './components/BootcampCard/NotFound/NotFound';
 import ResultsPage from './components/ResultsPage/ResultsPage';
 import CozeChatBubble from './components/CozeBubble/cozeSDK';
 import RecommendCourseInfo from './components/BootcampCard/RecommendCourse/RecommendCourseInfo';
-import UploadFile from './components/Uploadfile/UploadFile';
+import UploadFile from './components/Uploadfile/Uploadfile';
 
 const App: React.FC = () => {
     return (
         <Router>
           <AuthProvider>
             <InnerApp />
-            <CozeChatBubble/>
           </AuthProvider>
         </Router>
     );
@@ -49,7 +47,7 @@ const InnerApp: React.FC = () => {
         throw new Error('AuthContext must be used within an AuthProvider');
     }
 
-    const { login } = authContext;
+    const { auth, login } = authContext;
   // Array of paths where the Header should be hidden
   const authRoutes = ['/login', '/register', '/forgot-password', '/change-password'];
   const showHeader = !authRoutes.includes(location.pathname);
@@ -93,6 +91,7 @@ const InnerApp: React.FC = () => {
               {/* Catch-all route */}
               <Route path="*" element={<Navigate to="/" />} />
           </Routes>
+          {auth ? <CozeChatBubble /> : null}
       </>
   );
 };

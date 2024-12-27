@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { AuthContext } from '../../Context/Appcontext';
 
 // Declare the CozeWebSDK property on the window object
 declare global {
@@ -8,7 +9,13 @@ declare global {
 }
 
 const CozeChatBubble: React.FC = () => {
+    const authContext = useContext(AuthContext);
+
     useEffect(() => {
+        if (!authContext?.auth) {
+            return;
+        }
+
         // Thêm script Coze SDK vào DOM
         const script = document.createElement('script');
         script.src = 'https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.1.0-beta.0/libs/oversea/index.js';
@@ -32,7 +39,7 @@ const CozeChatBubble: React.FC = () => {
         return () => {
             document.body.removeChild(script);
         };
-    }, []);
+    }, [authContext?.auth]);
 
     return null; // Thành phần này không cần render gì
 };

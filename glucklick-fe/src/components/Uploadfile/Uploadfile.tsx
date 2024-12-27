@@ -1,8 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import axios from "axios";
 import "./UploadFlie.css";
 
 const UploadFile: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -10,11 +13,40 @@ const UploadFile: React.FC = () => {
     }
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      // Check file size (limit to 2MB)
+      const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
+      if (file.size > maxSizeInBytes) {
+        setErrorMessage("File size exceeds the 2MB limit.");
+        return;
+      }
+
       console.log("Selected file:", file.name);
-      // Handle the file upload logic here
+      setErrorMessage(null);
+
+      // Create a FormData object to send the file
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        // Send the file to the server
+        const response = await axios.post("https://your-server.com/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        if (response.status === 200) {
+          setSuccessMessage("File uploaded successfully!");
+        } else {
+          setErrorMessage("Failed to upload the file.");
+        }
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        setErrorMessage("An error occurred while uploading the file.");
+      }
     }
   };
 
@@ -54,6 +86,8 @@ const UploadFile: React.FC = () => {
         </svg>
         ADD FILE
       </button>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {successMessage && <p className="success-message">{successMessage}</p>}
     </div>
   );
 };
