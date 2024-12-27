@@ -91,18 +91,19 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
     next(error)
   }
 }
+
 // Hàm editUser để cập nhật thông tin người dùng
 export const editUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { userId } = req.params // Lấy userId từ tham số URL
-    const { username, email, password } = req.body // Các trường cần cập nhật
+    const { username, email, password, profilePic, bio } = req.body // Các trường cần cập nhật
 
     // Xác thực các trường cần thiết ở đây nếu cần thiết
 
     // Cập nhật người dùng trong cơ sở dữ liệu
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { username, email, password },
+      { username, email, password, profilePic, bio },
       { new: true } // Trả về người dùng sau khi đã cập nhật
     )
 
@@ -196,6 +197,27 @@ export const changePassword = async (req: Request, res: Response, next: NextFunc
     await user.save()
 
     res.status(200).json({ message: 'Password changed successfully' })
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const getUserById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    console.log(req.params)
+    const { userId } = req.params
+
+    // Tìm người dùng theo userId
+    const user = await User.findById(userId).select('-password') // Loại bỏ trường password khỏi kết quả
+
+    // Kiểm tra nếu không tìm thấy người dùng
+    if (!user) {
+      res.status(404).json({ message: 'Không tìm thấy người dùng' })
+      return
+    }
+
+    // Trả về thông tin người dùng
+    res.status(200).json({ user })
   } catch (error) {
     next(error)
   }
