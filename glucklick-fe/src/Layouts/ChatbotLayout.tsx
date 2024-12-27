@@ -77,7 +77,7 @@ const ChatbotLayout: React.FC = () => {
                 </nav>
 
                 <div className="sidebar-footer">
-<button className="sidebar-button" onClick={handleToggleDarkMode}>
+                    <button className="sidebar-button" onClick={handleToggleDarkMode}>
                         <FontAwesomeIcon icon={faMoon} className="icon" />
                         <span>Dark mode</span>
                     </button>

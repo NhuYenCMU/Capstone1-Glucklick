@@ -98,6 +98,7 @@ const revokeTokenOnServer = async (token: string): Promise<void> => {
     });
 
     if (!response.ok) {
-throw new Error('Network response was not ok');
+        throw new Error('Network response was not ok');
     }
 };
+

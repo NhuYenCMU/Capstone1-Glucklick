@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './components/common/Header';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';  // Đảm bảo Bootstrap JS đã được import
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';  // Ensure Bootstrap JS is imported
 
+
+// Context
+import { AuthProvider, AuthContext } from './Context/Appcontext';
 
 // Pages
 import RegisterPage from './Login/pages/RegisterPage';
@@ -12,7 +15,6 @@ import ForgotPasswordPage from './Login/pages/ForgotPasswordPage';
 import Homepage from './features/home/HomePage';
 import ChangePasswordPage from './Login/pages/ChangePassword';
 // Layouts
-import { AuthProvider, AuthContext } from './Context/Appcontext';
 
 import HomepageLayout from './Layouts/HomepageLayout';
 import AuthLayout from './Layouts/AuthLayout';
@@ -22,22 +24,13 @@ import Testanswer1 from './features/Testanswer/Testanswer1';
 import Testanswer2 from './features/Testanswer/Testanswer2';
 import Testanswer3 from './features/Testanswer/Testanswer3';
 import NotFound from './components/BootcampCard/NotFound/NotFound';
+
 import ResultsPage from './components/ResultsPage/ResultsPage';
 import CozeChatBubble from './components/CozeBubble/cozeSDK';
 import RecommendCourseInfo from './components/BootcampCard/RecommendCourse/RecommendCourseInfo';
-import Uploadfile from './components/UploadFile/UploadFile';
+import UploadFile from './components/UploadFile/Uploadfile';
 
 const App: React.FC = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-    const handleLogin = () => {
-        setIsAuthenticated(true); // Set authentication to true after login
-    };
-
-    const handleLogout = () => {
-        setIsAuthenticated(false); // Set authentication to false on logout
-    };
-
     return (
         <Router>
           <AuthProvider>
@@ -48,17 +41,15 @@ const App: React.FC = () => {
     );
 };
 
-// Separate component to use Router context
 const InnerApp: React.FC = () => {
-  const location = useLocation();
-  const authContext = React.useContext(AuthContext);
+    const location = useLocation();
+    const authContext = React.useContext(AuthContext);
 
-  if (!authContext) {
-      throw new Error('AuthContext must be used within an AuthProvider');
-  }
+    if (!authContext) {
+        throw new Error('AuthContext must be used within an AuthProvider');
+    }
 
-  const { login } = authContext;
-
+    const { login } = authContext;
   // Array of paths where the Header should be hidden
   const authRoutes = ['/login', '/register', '/forgot-password', '/change-password'];
   const showHeader = !authRoutes.includes(location.pathname);
@@ -89,7 +80,7 @@ const InnerApp: React.FC = () => {
               <Route path="/404" element={<NotFound />} />
               <Route path="/ResultsPage" element={<ResultsPage />} />
               <Route path="/Recomandcourse" element={<RecommendCourseInfo />} />
-              <Route path="/Uploadfile" element={<Uploadfile />} />
+              <Route path="/Uploadfile" element={<UploadFile />} />
               {/* Protected route example */}
               <Route
                   path="/protected"
