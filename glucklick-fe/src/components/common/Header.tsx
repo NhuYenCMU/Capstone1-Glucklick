@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/Appcontext';
 import './css/Header.css';
@@ -13,6 +13,32 @@ const Header: React.FC = () => {
     const { auth, logout } = authContext;
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [username, setUsername] = useState<string | null>(null);
+
+    // Fetch username when the component mounts
+    useEffect(() => {
+        const fetchUsername = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/auth/me', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${auth?.token}`, // Assuming you store the token in auth context
+                    },
+                });
+                const data = await response.json();
+                if (data.username) {
+                    setUsername(data.username);
+                }
+            } catch (error) {
+                console.error('Error fetching username:', error);
+            }
+        };
+
+        if (auth?.token) {
+            fetchUsername();
+        }
+    }, [auth]);
 
     const handleLogoClick = () => {
         navigate('/');
@@ -47,7 +73,9 @@ const Header: React.FC = () => {
                             className="user-avatar"
                             onClick={toggleDropdown}
                         />
-                        <span className="username" onClick={toggleDropdown}>Himass</span>
+                        <span className="username" onClick={toggleDropdown}>
+                            {username ? username : 'Himass'}
+                        </span>
                         {isDropdownOpen && (
                             <div className="dropdown-menu">
                                 <Link to="/edit-profile" className="dropdown-item">Edit Profile</Link>
