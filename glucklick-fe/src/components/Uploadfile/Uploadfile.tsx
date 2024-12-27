@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import "./Uploadfile.css";
+import "./UploadFlie.css";
 
-const Uploadfile: React.FC = () => {
+const UploadFile: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
@@ -58,4 +58,4 @@ const Uploadfile: React.FC = () => {
   );
 };
 
-export default Uploadfile;
+export default UploadFile;

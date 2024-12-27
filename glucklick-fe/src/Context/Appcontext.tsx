@@ -101,3 +101,4 @@ const revokeTokenOnServer = async (token: string): Promise<void> => {
         throw new Error('Network response was not ok');
     }
 };
+

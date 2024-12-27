@@ -1,188 +1,188 @@
 /* Full-page background */
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* Full viewport height */
-    background-color: #f2f3f8; /* Light gray background */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  .app-container {
-    display: flex;
-    width: 100%;
-    max-width: 1200px; /* Increased maximum width */
-    background-color: #ffffff;
-    border-radius: 12px; /* Slightly more rounded corners */
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15); /* Larger shadow for more depth */
-    overflow: hidden;
-    margin: 30px 250px; /* Center the container */
-  }
-  
-  /* Side image container */
-  .side-image {
-    width: 55%; /* Increased width for larger image */
-    background-color: #e9f5f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-    border-radius: 12px 0 0 12px;
-
-  }
-  
-  .side-image img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-  
-  .side-image p {
-    font-size: 1.4rem; /* Slightly increased font size */
-    color: #333;
-    margin-top: 25px;
-    font-weight: 500;
-  }
-  
-  /* Form container */
-  .form-container {
-    width: 45%; /* Adjusted to fit larger screen */
-    padding: 60px; /* Increased padding for more space */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Tabs */
-  .tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px; /* Increased margin for spacing */
-  }
-  
-  .tab-link {
-    padding: 14px 35px; /* Larger padding for bigger buttons */
-    margin: 0 12px;
-    color: #007bff;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 25px;
-    transition: background-color 0.3s, color 0.3s;
-    background-color: #e0f7fa;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    font-size: 1.1rem; /* Increased font size */
-  }
-  
-  .tab-link.active, .tab-link:hover {
-    background-color: #33b5e5;
-    color: white;
-  }
-  
-  /* Form */
-  .auth-form {
-    width: 100%;
-    max-width: 600px; /* Wider form width */
-  }
-  
-  .auth-form h2 {
-    color: #333;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem; /* Larger heading */
-  }
-  
-  .auth-form p {
-    font-weight: 500;
-    text-align: center;
-    color: #555;
-    margin-bottom: 20px; /* Adjusted spacing */
-  }
-  
-  .auth-form label {
-    font-weight: 500;
-    color: #555;
-    font-size: 1.1rem;
-    text-align: left; /* Aligns the label text to the left */
-    display: block; /* Ensures the label takes full width */
-    margin:5px 0;
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Full viewport height */
+  background-color: #f2f3f8; /* Light gray background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
 }
-  
+
+.app-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px; /* Increased maximum width */
+  background-color: #ffffff;
+  border-radius: 12px; /* Slightly more rounded corners */
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15); /* Larger shadow for more depth */
+  overflow: hidden;
+  margin: 30px 250px; /* Center the container */
+}
+
+/* Side image container */
+.side-image {
+  width: 55%; /* Increased width for larger image */
+  background-color: #e9f5f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px 0 0 12px;
+
+}
+
+.side-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.side-image p {
+  font-size: 1.4rem; /* Slightly increased font size */
+  color: #333;
+  margin-top: 25px;
+  font-weight: 500;
+}
+
+/* Form container */
+.form-container {
+  width: 45%; /* Adjusted to fit larger screen */
+  padding: 60px; /* Increased padding for more space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px; /* Increased margin for spacing */
+}
+
+.tab-link {
+  padding: 14px 35px; /* Larger padding for bigger buttons */
+  margin: 0 12px;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: #e0f7fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.1rem; /* Increased font size */
+}
+
+.tab-link.active, .tab-link:hover {
+  background-color: #33b5e5;
+  color: white;
+}
+
+/* Form */
+.auth-form {
+  width: 100%;
+  max-width: 600px; /* Wider form width */
+}
+
+.auth-form h2 {
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem; /* Larger heading */
+}
+
+.auth-form p {
+  font-weight: 500;
+  text-align: center;
+  color: #555;
+  margin-bottom: 20px; /* Adjusted spacing */
+}
+
+.auth-form label {
+  font-weight: 500;
+  color: #555;
+  font-size: 1.1rem;
+  text-align: left; /* Aligns the label text to the left */
+  display: block; /* Ensures the label takes full width */
+  margin:5px 0;
+}
+
 .auth-form input {
-    width: 100%;
-    border: 1spx solid #33b5e5;
-    border-radius: 8px;
-    padding: 0.9rem;
-    font-size: 1.1rem;
-    transition: border-color 0.3s;
-    margin-bottom: 10px;
+  width: 100%;
+  border: 1spx solid #33b5e5;
+  border-radius: 8px;
+  padding: 0.9rem;
+  font-size: 1.1rem;
+  transition: border-color 0.3s;
+  margin-bottom: 10px;
 }
-  
-  .auth-form input:focus {
-    border-color: #007bff;
-    outline: none;
+
+.auth-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-container {
+flex-direction: column;
+    width: 90vh;
+    max-width: 100vh; /* Full-width on mobile */
+    margin: 0 20px;
   }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .app-container {
-      flex-direction: column;
-      width: 90vh;
-      max-width: 100vh; /* Full-width on mobile */
-      margin: 0 20px;
-    }
-  
-    .side-image, .form-container {
-      width: 100%;
-      border-radius: 12px;
-    }
-  
-    .tabs {
-      flex-direction: column;
-      margin-bottom: 20px;
-    }
-  
-    .tab-link {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-  }
-  
-  /* Additional styles */
-  .auth-form .form-group.check {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .side-image, .form-container {
     width: 100%;
-    margin: 1rem 0;
+    border-radius: 12px;
   }
-  
-  .auth-form .form-group.check .remember-me {
-    display: flex;
-    align-items: baseline;
-    color: #333;
-    font-weight: 500;
-    font-size: 1rem;
-    white-space: nowrap;
+
+  .tabs {
+    flex-direction: column;
+    margin-bottom: 20px;
   }
-  
-  .auth-form .form-group.check input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
+
+  .tab-link {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
   }
-  
-  .auth-form .forgot-password-link {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-  }
-  
-  .auth-form .forgot-password-link:hover {
-    text-decoration: underline;
-  }
+}
+
+/* Additional styles */
+.auth-form .form-group.check {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.auth-form .form-group.check .remember-me {
+  display: flex;
+  align-items: baseline;
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.auth-form .form-group.check input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.auth-form .forgot-password-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.auth-form .forgot-password-link:hover {
+  text-decoration: underline;
+}

@@ -1,14 +1,14 @@
 import React from "react";
-import "./Recomandcourse.css";
+import "./RecommendCourse.css";
 
-interface RecomandcourseProps {
+interface RecommendCourseProps {
   imageUrl: string;
   title: string;
   platform: string;
   rating: number;
 }
 
-const Recomandcourse: React.FC<RecomandcourseProps> = ({
+const RecommendCourse: React.FC<RecommendCourseProps> = ({
   imageUrl,
   title,
   platform,
@@ -45,4 +45,4 @@ const Recomandcourse: React.FC<RecomandcourseProps> = ({
   );
 };
 
-export default Recomandcourse;
+export default RecommendCourse;

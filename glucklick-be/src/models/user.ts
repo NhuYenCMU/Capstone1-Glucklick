@@ -9,6 +9,7 @@ export interface IUser extends Document {
   role: string
   resetPasswordToken?: string // Token dùng để đặt lại mật khẩu
   resetPasswordExpires?: Date // Thời hạn của token đặt lại mật khẩu
+  bio?: string
 }
 
 const UserSchema: Schema = new Schema({
@@ -18,7 +19,8 @@ const UserSchema: Schema = new Schema({
   createdAt: { type: Date, default: Date.now },
   role: { type: String, required: true },
   resetPasswordToken: { type: String },
-  resetPasswordExpires: { type: Date }
+  resetPasswordExpires: { type: Date },
+  bio: { type: String }
 })
 
 export default mongoose.model<IUser>('users', UserSchema)

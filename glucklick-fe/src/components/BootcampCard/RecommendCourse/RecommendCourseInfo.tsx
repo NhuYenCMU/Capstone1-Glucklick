@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Recomandcourse from "./Recomandcourse";
-import "./Recomandcourse.css";
+import Recomandcourse from "./RecommendCourse";
+import "./RecommendCourse.css";
 
-const Recomandcoursein4: React.FC = () => {
+const RecommendCourseInfo: React.FC = () => {
   const navigate = useNavigate();
 
   const courses = [
@@ -44,4 +44,4 @@ const Recomandcoursein4: React.FC = () => {
   );
 };
 
-export default Recomandcoursein4;
+export default RecommendCourseInfo;
