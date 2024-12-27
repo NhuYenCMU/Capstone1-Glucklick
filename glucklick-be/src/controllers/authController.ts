@@ -200,3 +200,36 @@ export const changePassword = async (req: Request, res: Response, next: NextFunc
     next(error)
   }
 }
+
+
+export const getUserInfo = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+      // Lấy token từ header Authorization
+      const token = req.headers.authorization?.split(' ')[1]
+      if (!token) {
+        res.status(401).json({ message: 'Authentication token is missing' })
+        return
+      }
+  
+      // Xác thực token và lấy userId từ token
+      const decoded = verifyToken(token) // verifyToken là hàm giải mã token, bạn cần đảm bảo đã viết hàm này
+      const userId = decoded.userId
+      if (!decoded || !userId) {
+        res.status(401).json({ message: 'Invalid token' })
+        return
+      }
+      // const userId = decoded.id
+  
+      // Tìm người dùng theo userId
+      const user = await User.findById(userId)
+      if (!user) {
+        res.status(404).json({ message: 'User not found' })
+        return
+      }
+
+    // Trả về thông tin người dùng
+    res.status(200).json({ username: user.username })
+  } catch (error) {
+    next(error)
+  }
+}
