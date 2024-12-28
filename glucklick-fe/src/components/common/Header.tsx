@@ -86,7 +86,7 @@ const Header: React.FC = () => {
                         </span>
                         {isDropdownOpen && (
                             <div className="dropdown-menu">
-                                <Link to="/edit-profile" className="dropdown-item">Edit Profile</Link>
+                                <Link to="/EditProfile" className="dropdown-item">Edit Profile</Link>
                                 <Link to="/change-password" className="dropdown-item">Change Password</Link>
                                 <button className="dropdown-item" onClick={handleLogout}>Logout</button>
                             </div>

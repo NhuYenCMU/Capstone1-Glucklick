@@ -28,6 +28,7 @@ import ResultsPage from './components/ResultsPage/ResultsPage';
 import CozeChatBubble from './components/CozeBubble/cozeSDK';
 import RecommendCourseInfo from './components/BootcampCard/RecommendCourse/RecommendCourseInfo';
 import UploadFile from './components/Uploadfile/Uploadfile';
+import EditProfile from './Login/pages/Editprofile';
 
 const App: React.FC = () => {
     return (
@@ -79,6 +80,8 @@ const InnerApp: React.FC = () => {
               <Route path="/ResultsPage" element={<ResultsPage />} />
               <Route path="/Recomandcourse" element={<RecommendCourseInfo />} />
               <Route path="/Uploadfile" element={<UploadFile />} />
+              <Route path="/EditProfile" element={<EditProfile />} />
+
               {/* Protected route example */}
               <Route
                   path="/protected"
