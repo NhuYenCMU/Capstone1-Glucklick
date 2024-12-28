@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export interface BootcampCardProps {
   image: string;
@@ -6,13 +7,17 @@ export interface BootcampCardProps {
   name: string;
   format: string;
   alt: string;
-  link: string; // Thêm thuộc tính link
+  // link: string; // Thêm thuộc tính link
 }
 
-const BootcampCard: React.FC<BootcampCardProps> = ({ image, title, name, format, alt, link }) => {
+const BootcampCard: React.FC<BootcampCardProps> = ({ image, title, name, format, alt }) => {
+  const navigate = useNavigate();
+
   const handleImageClick = () => {
-    window.location.href = link; // Điều hướng đến link
+    // Điều hướng đến trang khóa học với title làm query parameter
+    navigate(`/Recomandcourse?title=${title}`);
   };
+
 
   return (
     <div className="card" onClick={handleImageClick}>
