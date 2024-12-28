@@ -34,6 +34,8 @@
   padding: 5px 5px; /* Add spacing */
   transition: all 0.3s ease; /* Smooth hover transition */
   cursor: pointer; /* Pointer cursor */
+  font-family: Quicksand, serif;
+  font-weight: 700;
 }
 
 .nav .item:hover {

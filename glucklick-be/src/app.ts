@@ -7,6 +7,7 @@ import helmet from 'helmet'
 
 import authRoutes from './routes/authRoutes'
 import router from './routes/sendMail'
+import courseRoutes from './routes/courseRoutes';
 
 dotenv.config()
 
@@ -21,6 +22,7 @@ app.use(morgan('combined'))
 // Routes
 app.use('/api/auth', authRoutes)
 app.use(router)
+app.use('/api', courseRoutes)
 
 // MongoDB Connection
 mongoose
